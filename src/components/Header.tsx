@@ -10,9 +10,9 @@ const Header = () => {
       </div>
 			<div className="navbar-center hidden lg:flex"></div>
 			<div className="navbar-end flex items-center gap-4 md:gap-6">
-        <button className="btn btn-accent text-white !px-2"><IoChatboxEllipsesOutline className="text-[28px]" /></button>
-				<a className="btn btn-success w-[100px] text-white">Register</a>
-				<a className="btn btn-secondary w-[100px]">Login</a>
+        <button className="btn btn-accent text-white !px-2 hidden md:block"><IoChatboxEllipsesOutline className="text-[28px]" /></button>
+				<a className="btn btn-success md:w-[100px] text-white">Register</a>
+				<a className="btn btn-secondary md:w-[100px]">Login</a>
 			</div>
 		</div>
 	);
