@@ -10,6 +10,7 @@ import { ImCancelCircle } from "react-icons/im";
 const Sidebar = () => {
 	const [showMenu, setShowMenu] = useState(false);
 	const [showSidebar, setShowSidebar] = useState(false);
+	const [activeDock, setActiveDock] = useState("ranking");
 	return (
 		<>
 			<aside
@@ -76,19 +77,28 @@ const Sidebar = () => {
 					<ImCancelCircle className={showSidebar ? "block size-[1.6rem]" : "hidden"} />
 				</button>
 
-				<button>
+				<button
+					onClick={() => setActiveDock("ranking")}
+					className={activeDock === "ranking" ? "dock-active" : ""}
+				>
 					<PiRanking className="size-[1.2rem]" />
 					<span className="dock-label">Ranking</span>
 				</button>
 
-				<button>
+				<button
+					onClick={() => setActiveDock("rewards")}
+					className={activeDock === "rewards" ? "dock-active" : ""}
+				>
 					<RiMedalLine className="size-[1.2rem]" />
 					<span className="dock-label">Rewards</span>
 				</button>
 
-				<button>
+				<button
+					onClick={() => setActiveDock("chat")}
+					className={activeDock === "chat" ? "dock-active" : ""}
+				>
 					<IoChatboxEllipsesOutline className="size-[1.2rem]" />
-					<span className="dock-label">Chat</span>
+					<span className="dock-label dock-active">Chat</span>
 				</button>
 			</div>
 		</>
