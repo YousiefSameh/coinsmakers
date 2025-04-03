@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Templates
 import MainTemplate from "@templates/MainTemplate";
-import Home from "@pages/Home";
+import Earn from "@pages/Earn";
 
 const router = createBrowserRouter([
 	{
@@ -11,7 +11,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				index: true,
-				element: <Home />,
+				element: <Earn />,
 			},
 		],
 	},

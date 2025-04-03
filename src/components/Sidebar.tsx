@@ -16,7 +16,7 @@ const Sidebar = () => {
 			<aside
 				className={`${
 					showSidebar ? "block" : "hidden"
-				} md:block w-[210px] md:w-[240px] bg-[#272B3A] max-h-screen h-full fixed top-0 left-0 overflow-y-auto py-4`}
+				} md:block w-[210px] md:w-[240px] z-20 bg-[#272B3A] max-h-screen h-full fixed top-0 left-0 overflow-y-auto py-4`}
 			>
 				<nav className="p-2 mt-[70px]">
 					<p className="uppercase text-neutral-400 text-sm mb-3 p-2 pb-0">
