@@ -11,8 +11,8 @@ const MainTemplate = () => {
 				<Header />
 				<div className="content p-6 md:p-12">
 					<Outlet />
-					<Footer />
 				</div>
+				<Footer />
 			</main>
 		</div>
 	);

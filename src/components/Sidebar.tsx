@@ -16,7 +16,7 @@ const Sidebar = () => {
 			<aside
 				className={`${
 					showSidebar ? "block" : "hidden"
-				} md:block w-[210px] md:w-[240px] z-20 bg-[#272B3A] max-h-screen h-full fixed top-0 left-0 overflow-y-auto py-4`}
+				} md:block w-[210px] md:w-[240px] z-20 bg-[#272B3A] max-h-screen h-full fixed top-0 left-0 overflow-y-auto py-4 shadow-lg border-r border-blue-light`}
 			>
 				<nav className="p-2 mt-[70px]">
 					<p className="uppercase text-neutral-400 text-sm mb-3 p-2 pb-0">
@@ -71,7 +71,7 @@ const Sidebar = () => {
 					</ul>
 				</nav>
 			</aside>
-			<div className="dock dock-lg flex md:hidden">
+			<div className="dock dock-lg flex md:hidden z-30">
 				<button onClick={() => setShowSidebar(!showSidebar)}>
 					<FaBars className={showSidebar ? "hidden" : "block size-[1.6rem]"} />
 					<ImCancelCircle className={showSidebar ? "block size-[1.6rem]" : "hidden"} />
