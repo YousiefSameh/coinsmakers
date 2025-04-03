@@ -22,7 +22,7 @@ const Sidebar = () => {
 					<p className="uppercase text-neutral-400 text-sm mb-3 p-2 pb-0">
 						Main
 					</p>
-					<ul className="space-y-4">
+					<ul className="space-y-2">
 						<li className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer">
 							<div className="icon bg-[#1D202C] p-2 rounded-md">
 								<FaHome className="text-2xl" />
