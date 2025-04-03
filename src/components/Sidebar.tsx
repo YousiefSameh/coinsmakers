@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Logo from "@assets/Logo.png";
 import { FaHome } from "react-icons/fa";
 import { IoCashOutline } from "react-icons/io5";
 import { PiRanking } from "react-icons/pi";
@@ -12,8 +11,7 @@ const Sidebar = () => {
 	return (
 		<>
 			<aside className="hidden md:block w-[240px] bg-[#272B3A] max-h-screen h-full fixed top-0 left-0 overflow-y-auto py-4">
-				<img src={Logo} className="Logo px-4" alt="" />
-				<nav className="p-2">
+				<nav className="p-2 mt-[70px]">
 					<p className="uppercase text-neutral-400 text-sm mb-3 p-2 pb-0">
 						Main
 					</p>
