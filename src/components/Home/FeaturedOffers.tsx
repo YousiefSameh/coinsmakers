@@ -8,12 +8,12 @@ const FeaturedOffers = () => {
 	return (
 		<section>
 			<SpecialHeading title="Featured Offers" icon={<FaFireAlt />} />
-			<div className="content flex items-center overflow-x-auto gap-6 py-6">
+			<div className="content flex items-center overflow-x-auto gap-4 md:gap-6 py-6">
 				{Array.from({ length: 12 }, (_, index) => index).map((index) => {
 					return (
 						<div
 							key={index}
-							className="card bg-panel-bg p-3 flex justify-center flex-col hover:scale-105 transform transition duration-300"
+							className="card bg-panel-bg p-3 min-w-[6rem] md:min-w-[13rem] flex justify-center flex-col hover:scale-105 transform transition duration-300"
 						>
 							<div
 								className="relative group"
@@ -25,22 +25,22 @@ const FeaturedOffers = () => {
 								<div className="overlay absolute top-0 left-0 h-full w-full backdrop-blur-[5px] hidden items-center justify-center text-none text-5xl z-[3] rounded-lg cursor-pointer group-hover:flex">
 									<FaRegCirclePlay className="text-secondary-color" />
 								</div>
-								<div className="offers-devices absolute flex items-center bg-[#383d52d6] text-[1rem] text-[#ddd] justify-center gap-1 w-auto p-[5px] rounded-[5px] ml-[12px] z-[2] left-[-4px] top-[5px]">
+								<div className="offers-devices absolute flex items-center bg-[#383d52d6] text-[1rem] text-[#ddd] justify-center gap-1 w-auto p-[5px] rounded-[5px] ml-[12px] z-[2] top-1 left-[-8px] md:left-[-4px] md:top-[5px]">
 									<IoLogoAndroid />
 								</div>
 								<img
 									src="https://cdn.farly.io/img_apps/alibaba/icone.png"
-									className="rounded-lg w-full"
+									className="rounded-lg w-[90%] md:w-full"
 									alt="Card Icon"
 								/>
 							</div>
 							<div className="title mt-2">
-								<h3 className="text-lg font-semibold">Alibaba.com</h3>
-								<p className="text-base-content/60">Farly</p>
+								<h3 className="text-[12px] md:text-lg font-semibold">Alibaba.com</h3>
+								<p className="text-[10px] md:text-base text-base-content/60">Farly</p>
 							</div>
-							<div className="price mt-2 flex items-center gap-2">
+							<div className="price mt-2 flex items-center gap-1 md:gap-2 text-sm md:text-xl">
 								<span>$200.00</span>
-								<span className="text-yellow-400 text-xl">
+								<span className="text-yellow-400">
 									<PiCoinVerticalFill />
 								</span>
 							</div>
