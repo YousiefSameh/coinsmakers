@@ -1,10 +1,10 @@
-import FeaturedOffers from "@components/Home/FeaturedOffers"
-import OfferwallPartners from "@components/Home/OfferwallPartners"
-import SurveyPartners from "@components/Home/SurveyPartners"
+import FeaturedOffers from "@components/Earn/FeaturedOffers"
+import OfferwallPartners from "@components/Earn/OfferwallPartners"
+import SurveyPartners from "@components/Earn/SurveyPartners"
 
 const Earn = () => {
   return (
-    <div className="space-y-[100px]">
+    <div className="space-y-[30px] md:space-y-[100px]">
       <FeaturedOffers />
       <OfferwallPartners />
       <SurveyPartners />

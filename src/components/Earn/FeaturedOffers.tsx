@@ -31,11 +31,13 @@ const FeaturedOffers = () => {
 	};
 
 	return (
-		<section>
-			<SpecialHeading title="Featured Offers" icon={<FaFireAlt />} />
+		<section className="pt-6 md:pt-0">
+			<div className="head px-6 md:px-0">
+				<SpecialHeading title="Featured Offers" icon={<FaFireAlt />} />
+			</div>
 			<div
 				ref={scrollContainerRef}
-				className="content flex items-center overflow-x-auto gap-4 md:gap-5 py-6 cursor-grab"
+				className="content flex items-center overflow-x-auto gap-4 md:gap-5 px-6 pt-6 cursor-grab"
 				style={{ scrollbarWidth: "none" }}
 				onMouseDown={handleMouseDown}
 				onMouseMove={handleMouseMove}
@@ -58,12 +60,12 @@ const FeaturedOffers = () => {
 								<div className="overlay absolute top-0 left-0 h-full w-full backdrop-blur-[5px] hidden items-center justify-center text-none text-5xl z-[3] rounded-lg cursor-pointer group-hover:flex">
 									<FaRegCirclePlay className="text-secondary-color" />
 								</div>
-								<div className="offers-devices absolute flex items-center bg-[#383d52d6] text-[1rem] text-[#ddd] justify-center gap-1 w-auto p-[5px] rounded-[5px] ml-[12px] z-[2] top-1 left-[-8px] md:left-[-4px] md:top-[5px]">
+								<div className="offers-devices absolute flex items-center bg-[#383d52d6] text-[0.8rem] md:text-[1rem] text-[#ddd] justify-center gap-1 w-auto md:p-[5px] rounded-[5px] ml-[12px] z-[2] top-1 left-[-8px] md:left-[-4px] md:top-[5px]">
 									<IoLogoAndroid />
 								</div>
 								<img
 									src="https://cdn.farly.io/img_apps/alibaba/icone.png"
-									className="rounded-lg w-[90%] md:w-full"
+									className="rounded-lg w-[95%] md:w-full"
 									alt="Card Icon"
 								/>
 							</div>

@@ -105,10 +105,12 @@ const OfferwallPartners = () => {
 	};
 	return (
 		<section>
-			<SpecialHeading title="Offerwall Partners" icon={<BsJoystick />} />
+      <div className="head px-6 md:px-0">
+        <SpecialHeading title="Offerwall Partners" icon={<BsJoystick />} />
+      </div>
 			<div
         ref={scrollContainerRef}
-				className="content flex items-center overflow-x-auto gap-4 md:gap-5 py-6 cursor-grab"
+				className="content flex items-center overflow-x-auto gap-4 md:gap-5 p-6 md:py-6 cursor-grab"
 				style={{ scrollbarWidth: "none" }}
 				onMouseDown={handleMouseDown}
 				onMouseMove={handleMouseMove}
@@ -130,7 +132,7 @@ const OfferwallPartners = () => {
 								</span>
 								<img
                   src={item.img}
-									className="w-[65px] md:w-[100px] mb-6 hover:scale-110 transition-transform duration-300 drop-shadow-lg"
+									className="h-[40px] md:h-fit w-[65px] md:w-[100px] mb-6 hover:scale-110 transition-transform duration-300 drop-shadow-lg"
 									alt="Card Image"
 								/>
 								<div className="text absolute bottom-0 flex flex-col justify-center items-center gap-1 w-full py-2 rounded-b-lg z-[4]">

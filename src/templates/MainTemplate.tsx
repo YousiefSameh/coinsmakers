@@ -9,7 +9,7 @@ const MainTemplate = () => {
 			<Sidebar />
 			<main className="ml-0 md:ml-[240px] w-screen md:w-[calc(100%-240px)] overflow-hidden relative">
 				<Header />
-				<div className="content p-6 md:p-12">
+				<div className="content p-0 sm:p-6 md:p-12">
 					<Outlet />
 				</div>
 				<Footer />

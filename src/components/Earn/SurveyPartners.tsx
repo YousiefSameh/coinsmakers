@@ -30,10 +30,12 @@ const SurveyPartners = () => {
 	};
 	return (
 		<section>
-			<SpecialHeading title="Survey Partners" icon={<BsJoystick />} />
+			<div className="head px-6 md:px-0">
+				<SpecialHeading title="Survey Partners" icon={<BsJoystick />} />
+			</div>
 			<div
 				ref={scrollContainerRef}
-				className="content flex items-center overflow-x-auto gap-4 md:gap-5 py-6 cursor-grab"
+				className="content flex items-center overflow-x-auto gap-4 md:gap-5 p-6 md:py-6 cursor-grab"
 				style={{ scrollbarWidth: "none" }}
 				onMouseDown={handleMouseDown}
 				onMouseMove={handleMouseMove}
