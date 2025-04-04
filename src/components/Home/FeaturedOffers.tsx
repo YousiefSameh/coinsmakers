@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import SpecialHeading from "@components/SpecialHeading";
 import { FaFireAlt } from "react-icons/fa";
 import { PiCoinVerticalFill } from "react-icons/pi";
@@ -5,15 +6,47 @@ import { IoLogoAndroid } from "react-icons/io";
 import { FaRegCirclePlay } from "react-icons/fa6";
 
 const FeaturedOffers = () => {
+	const scrollContainerRef = useRef<HTMLDivElement>(null);
+	const [isDragging, setIsDragging] = useState(false);
+	const [startX, setStartX] = useState(0);
+	const [scrollLeft, setScrollLeft] = useState(0);
+
+	const handleMouseDown = (e: React.MouseEvent) => {
+		if (!scrollContainerRef.current) return;
+		setIsDragging(true);
+		setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+		setScrollLeft(scrollContainerRef.current.scrollLeft);
+	};
+
+	const handleMouseMove = (e: React.MouseEvent) => {
+		if (!isDragging || !scrollContainerRef.current) return;
+		e.preventDefault();
+		const x = e.pageX - scrollContainerRef.current.offsetLeft;
+		const walk = (x - startX) * 2;
+		scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+	};
+
+	const handleMouseUp = () => {
+		setIsDragging(false);
+	};
+
 	return (
 		<section>
 			<SpecialHeading title="Featured Offers" icon={<FaFireAlt />} />
-			<div className="content flex items-center overflow-x-auto gap-4 md:gap-6 py-6">
+			<div
+				ref={scrollContainerRef}
+				className="content flex items-center overflow-x-auto gap-4 md:gap-5 py-6 cursor-grab"
+				style={{ scrollbarWidth: "none" }}
+				onMouseDown={handleMouseDown}
+				onMouseMove={handleMouseMove}
+				onMouseUp={handleMouseUp}
+				onMouseLeave={handleMouseUp}
+			>
 				{Array.from({ length: 12 }, (_, index) => index).map((index) => {
 					return (
 						<div
 							key={index}
-							className="card bg-panel-bg p-3 min-w-[6rem] md:min-w-[13rem] flex justify-center flex-col hover:scale-105 transform transition duration-300"
+							className="card bg-panel-bg p-3 min-w-[6rem] md:min-w-[11rem] flex justify-center flex-col hover:scale-105 transform transition duration-300"
 						>
 							<div
 								className="relative group"
