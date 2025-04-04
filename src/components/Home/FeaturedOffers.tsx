@@ -56,9 +56,9 @@ const FeaturedOffers = () => {
 							✕
 						</button>
 					</form>
-					<div className="header relative overflow-hidden pt-[35px] px-[24px] pb-[25px]">
-						<div className="background bg-[url('https://www.farly.io/d/3504/76379/icon/?sub=3504&gaid=[GAID]')] bg-cover bg-no-repeat h-[100px] blur-[100px] inset-0  pt-[35px] px-[24px] pb-[25px]"></div>
-						<div className="flex absolute inset-0 h-fit gap-4 pt-[35px] px-[24px] pb-[25px]">
+					<div className="header relative overflow-hidden pt-[35px] px-[24px] pb-[25px] flex items-center justify-center">
+						<div className="background bg-[url('https://www.farly.io/d/3504/76379/icon/?sub=3504&gaid=[GAID]')] bg-cover bg-no-repeat rounded-lg size-[100px] blur-[100px] inset-0"></div>
+						<div className="flex absolute h-fit gap-4 px-[24px]">
 							<div className="imag">
 								<img
 									src="https://www.farly.io/d/3504/76379/icon/?sub=3504&gaid=[GAID]"
@@ -135,9 +135,9 @@ const FeaturedOffers = () => {
 								</div>
 							</div>
 						</div>
-						<div className="details mt-5">
+						<div className="details mt-7">
 							<hr className="border border-neutral-700 outline-none" />
-							<div className="content flex items-center p-2 justify-between">
+							<div className="content flex items-center p-2 justify-between flex-wrap gap-4">
 								<div className="categories">
 									<span className="block mb-2">Categories</span>
 									<div className="flex items-center gap-2">
