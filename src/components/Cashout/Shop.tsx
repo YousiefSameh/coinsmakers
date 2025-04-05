@@ -32,12 +32,6 @@ const Shop = () => {
 			</div>
 			<dialog id="my_modal" className="modal">
 				<div className="modal-box p-0">
-					<form method="dialog">
-						{/* if there is a button in form, it will close the modal */}
-						<button className="btn btn-sm btn-circle btn-ghost absolute right-2 outline-none border-none top-2 z-[90000] ">
-							✕
-						</button>
-					</form>
 					<div className="header relative overflow-hidden pt-[35px] px-[24px] pb-[25px] flex items-center justify-start">
 						<div className="background bg-[url('https://coinsmakers.com/asset/uploads/withdraw/method/65c40f3262f1c1707347762.png')] bg-cover bg-no-repeat rounded-lg size-[100px] blur-[100px] inset-0"></div>
 						<div className="flex items-center absolute h-fit gap-8 px-[24px]">
@@ -74,7 +68,7 @@ const Shop = () => {
 							<div className="content flex flex-col gap-3 mt-4">
 								<div className="goal bg-[#16202B] p-4 rounded-lg flex items-center justify-between">
 									<div className="goal-started flex items-center gap-2">
-										<FaMinusCircle className="text-secondary-color" />
+										<FaMinusCircle className="text-red-500" />
 										<p className="text-base-content/60 text-sm">
                       Minimum
 										</p>
@@ -107,9 +101,11 @@ const Shop = () => {
 						<a href="#" className="btn btn-soft btn-lg btn-accent w-[100px]">
 							Confirm
 						</a>
-						<a href="#" className="btn btn-soft btn-lg btn-error w-[100px]">
-							Cancel
-						</a>
+						<form method="dialog">
+							<button className="btn btn-soft btn-lg btn-error w-[100px]">
+								Cancel
+							</button>
+					</form>
 					</div>
 				</div>
 			</dialog>

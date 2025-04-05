@@ -59,7 +59,7 @@ const FeaturedOffers = () => {
 							✕
 						</button>
 					</form>
-					<div className="header relative overflow-hidden pt-[35px] px-[24px] pb-[25px] flex items-center justify-center">
+					<div className="header relative overflow-hidden pt-[35px] px-[24px] pb-[25px] flex items-center justify-start">
 						<div className="background bg-[url('https://www.farly.io/d/3504/76379/icon/?sub=3504&gaid=[GAID]')] bg-cover bg-no-repeat rounded-lg size-[100px] blur-[100px] inset-0"></div>
 						<div className="flex absolute h-fit gap-4 px-[24px]">
 							<div className="imag">

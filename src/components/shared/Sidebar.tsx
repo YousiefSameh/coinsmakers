@@ -6,6 +6,7 @@ import { TbCoins } from "react-icons/tb";
 import { MdArrowRight } from "react-icons/md";
 import { RiMedalLine } from "react-icons/ri";
 import { ImCancelCircle } from "react-icons/im";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
 	const [showMenu, setShowMenu] = useState(false);
@@ -29,10 +30,12 @@ const Sidebar = () => {
 							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
 							aria-label="Home"
 						>
-							<div className="icon bg-[#1D202C] p-2 rounded-md">
-								<FaHome className="text-2xl" />
-							</div>
-							<p className="text-lg">Home</p>
+							<Link to="/" className="flex items-center gap-5 w-full">
+								<div className="icon bg-[#1D202C] p-2 rounded-md">
+									<FaHome className="text-2xl" />
+								</div>
+								<p className="text-lg">Home</p>
+							</Link>
 						</li>
 						<li>
 							<button
@@ -69,10 +72,12 @@ const Sidebar = () => {
 							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
 							aria-label="Cashout"
 						>
-							<div className="icon bg-[#1D202C] p-2 rounded-md">
-								<IoCashOutline className="text-2xl" />
-							</div>
-							<p className="text-lg">Cashout</p>
+							<Link to="/cashout" className="flex items-center gap-5 w-full">
+								<div className="icon bg-[#1D202C] p-2 rounded-md">
+									<IoCashOutline className="text-2xl" />
+								</div>
+								<p className="text-lg">Cashout</p>
+							</Link>
 						</li>
 						<li
 							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
