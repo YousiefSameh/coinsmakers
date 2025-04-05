@@ -1,17 +1,22 @@
+import Loading from "@components/feedback/Loading";
+import PageSuspenseFallback from "@components/feedback/PageSuspenseFallback";
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Templates
-import MainTemplate from "@templates/MainTemplate";
-import Earn from "@pages/Earn";
+const MainTemplate = lazy(() => import("@templates/MainTemplate"));
+
+// Pages
+const Earn = lazy(() => import("@pages/Earn"));
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <MainTemplate />,
+		element: <Suspense fallback={<Loading />}><MainTemplate /></Suspense>,
 		children: [
 			{
 				index: true,
-				element: <Earn />,
+				element: <PageSuspenseFallback><Earn /></PageSuspenseFallback>,
 			},
 		],
 	},
