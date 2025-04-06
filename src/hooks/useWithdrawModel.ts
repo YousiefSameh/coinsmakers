@@ -30,7 +30,6 @@ const useWrapperSwipe = ({ title }: { title: string }) => {
 			toast.error("Invalid amount. Please enter a valid amount.");
 		} else {
 			dispatch(setCurrentCashout(data));
-			toast.success("Cashout request submitted successfully!");
 		}
 	}, [data, dispatch]);
   return {handleInput, handleData, handleSubmit}

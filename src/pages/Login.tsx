@@ -12,6 +12,7 @@ import {
 } from "@store/auth/AuthSlice";
 import { useAppDispatch } from "@store/hooks";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 type TLoginForm = z.infer<typeof loginSchema>;
 
@@ -34,12 +35,14 @@ const Login = () => {
 			dispatch(loginRequest());
 			dispatch(
 				loginSuccess({
-					user: { username: formData.username, email: formData.email },
+					user: { identifer: formData.identifier },
 				})
-			);
-			navigate("/dashboard/earn", { replace: true });
+			)
+			toast.success("Login successful");
+			navigate("/", { replace: true });
 			return () => {
 				dispatch(loginFailure("Failed to register user"));
+				toast.error("Login failed. Please try again.");
 			};
 		}
 	}, [dispatch, formData, navigate]);
@@ -54,35 +57,19 @@ const Login = () => {
 			<form action="" onSubmit={handleSubmit(submitForm)} className="content">
 				<div className="flex flex-col gap-4 mt-5 w-full">
 					<fieldset className="fieldset">
-						<legend className="fieldset-legend">Username</legend>
+						<legend className="fieldset-legend">Username Or Email Address</legend>
 						<input
 							type="text"
 							className={`input border-secondary-color text-white w-full ${
-								errors.username?.message
+								errors.identifier?.message
 									? "input-error border-red-400 outline-red-400"
 									: ""
 							}`}
 							placeholder="Write here ..."
-							{...register("username")}
+							{...register("identifier")}
 						/>
 						<p className="fieldset-label text-red-400">
-							{errors.username?.message}
-						</p>
-					</fieldset>
-					<fieldset className="fieldset">
-						<legend className="fieldset-legend">Email Address</legend>
-						<input
-							type="text"
-							className={`input border-secondary-color text-white w-full ${
-								errors.email?.message
-									? "input-error border-red-400 outline-red-400"
-									: ""
-							}`}
-							placeholder="Write here ..."
-							{...register("email")}
-						/>
-						<p className="fieldset-label text-red-400">
-							{errors.email?.message}
+							{errors.identifier?.message}
 						</p>
 					</fieldset>
 					<fieldset className="fieldset">
@@ -107,7 +94,7 @@ const Login = () => {
 				</button>
 				<p className="mt-4 text-gray-400">
 					Do not have an account?{" "}
-					<Link to="/dashboard/register" className="text-secondary-color">
+					<Link to="/register" className="text-secondary-color">
 						Register
 					</Link>
 				</p>

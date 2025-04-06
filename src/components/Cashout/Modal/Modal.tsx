@@ -84,7 +84,7 @@ const Modal = ({ title, imgSrc, bgColor }: ModalProps) => {
 						onClick={handleSubmit}
 						className="btn btn-soft btn-lg btn-accent w-[100px]"
 					>
-						<Link to="/dashboard/cashout/confirm">Confirm</Link>
+						<Link to="/cashout/confirm">Confirm</Link>
 					</button>
 					<form method="dialog">
 						<button className="btn btn-soft btn-lg btn-error w-[100px]">

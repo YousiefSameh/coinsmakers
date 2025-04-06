@@ -1,11 +1,14 @@
 import Logo from "@assets/Logo.png";
 import LogoSM from "@assets/LogoSM.png";
 import Avatar from "@assets/Avatar.png";
-import { useAppSelector } from "@store/hooks";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { logout } from "@store/auth/AuthSlice";
+import { FaBell } from "react-icons/fa";
 
 const Header = () => {
+	const dispatch = useAppDispatch();
 	const { user } = useAppSelector((state) => state.auth);
 	return (
 		<>
@@ -30,30 +33,51 @@ const Header = () => {
 							>
 								<IoChatboxEllipsesOutline className="text-[28px]" />
 							</button>
-							<Link to="/dashboard/profile">
-								<button
-									className="bg-transparent"
-									aria-label="Profile"
-								>
+							<div className="dropdown dropdown-end">
+								<label tabIndex={0} className="cursor-pointer">
 									<div className="avatar">
 										<div className="ring-secondary-color ring-offset-base-100 w-[40px] rounded-full ring ring-offset-2">
-											<img src={Avatar} />
+											<img src={Avatar} alt="User Avatar" />
 										</div>
 									</div>
-								</button>
-							</Link>
+								</label>
+								<ul
+									tabIndex={0}
+									className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+								>
+									<li>
+										<Link to="/profile" aria-label="Profile">
+											Profile
+										</Link>
+									</li>
+									<li>
+										<button
+											onClick={() => dispatch(logout())}
+											aria-label="Logout"
+										>
+											Logout
+										</button>
+									</li>
+								</ul>
+							</div>
+							<button
+								className="btn btn-secondary text-white !px-2 hidden md:block"
+								aria-label="Notifications"
+							>
+								<span className="text-[28px]"><FaBell /></span>
+							</button>
 						</>
 					) : (
 						<>
 							<Link
-								to="/dashboard/register"
+								to="/register"
 								className="btn btn-success md:w-[100px] text-white"
 								aria-label="Register"
 							>
 								Register
 							</Link>
 							<Link
-								to="/dashboard/login"
+								to="/login"
 								className="btn btn-secondary md:w-[100px]"
 								aria-label="Login"
 							>

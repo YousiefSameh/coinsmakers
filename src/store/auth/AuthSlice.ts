@@ -3,9 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface IAuthState {
   user: {
-    username: string;
-    email: string;
-  },
+    identifier: string;
+  } | null,
   // token: string | null;
   isAuthenticated: boolean;
   loading: TLoading;
@@ -13,10 +12,7 @@ interface IAuthState {
 }
 
 const initialState: IAuthState = {
-  user: {
-    username: "",
-    email: "",
-  },
+  user: null,
   // token: null,
   isAuthenticated: false,
   loading: "idle",
@@ -42,7 +38,7 @@ const authSlice = createSlice({
       state.error = action.payload;
     },
     logout: (state) => {
-      state.user = { username: "", email: "" };
+      state.user = null;
       // state.token = null;
       state.isAuthenticated = false;
     },

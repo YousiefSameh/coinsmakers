@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const MainTemplate = lazy(() => import("@templates/MainTemplate"));
 
 // Pages
-const Home = lazy(() => import("@pages/Home"));
+// const Home = lazy(() => import("@pages/Home"));
 const Earn = lazy(() => import("@pages/Earn"));
 const Cashout = lazy(() => import("@pages/Cashout"));
 const Checkout = lazy(() => import("@pages/Checkout"));
@@ -17,43 +17,67 @@ const Login = lazy(() => import("@pages/Login"));
 
 const router = createBrowserRouter([
 	{
-		path: "/dashboard",
-		element: <Suspense fallback={<Loading />}><MainTemplate /></Suspense>,
+		path: "/",
+		element: (
+			<Suspense fallback={<Loading />}>
+				<MainTemplate />
+			</Suspense>
+		),
 		children: [
 			{
-				path: "earn",
-				element: <PageSuspenseFallback><Earn /></PageSuspenseFallback>,
+				index: true,
+				element: (
+					<PageSuspenseFallback>
+						<Earn />
+					</PageSuspenseFallback>
+				),
 			},
 			{
 				path: "cashout",
-				element: <PageSuspenseFallback><Cashout /></PageSuspenseFallback>,
+				element: (
+					<PageSuspenseFallback>
+						<Cashout />
+					</PageSuspenseFallback>
+				),
 			},
 			{
 				path: "cashout/confirm",
-				element: <PageSuspenseFallback><Checkout /></PageSuspenseFallback>,
+				element: (
+					<PageSuspenseFallback>
+						<Checkout />
+					</PageSuspenseFallback>
+				),
 			},
 			{
 				path: "cashout/history",
-				element: <PageSuspenseFallback><CashoutHistory /></PageSuspenseFallback>,
+				element: (
+					<PageSuspenseFallback>
+						<CashoutHistory />
+					</PageSuspenseFallback>
+				),
 			},
 			{
 				path: "register",
-				element: <PageSuspenseFallback><Register /></PageSuspenseFallback>,
+				element: (
+					<PageSuspenseFallback>
+						<Register />
+					</PageSuspenseFallback>
+				),
 			},
 			{
 				path: "login",
-				element: <PageSuspenseFallback><Login /></PageSuspenseFallback>,
+				element: (
+					<PageSuspenseFallback>
+						<Login />
+					</PageSuspenseFallback>
+				),
 			},
 		],
 	},
-	{
-		path: "/",
-		element: <PageSuspenseFallback><Home /></PageSuspenseFallback>,
-	}
 ]);
 
 const AppRouter = () => {
-  return <RouterProvider router={router} />
-}
+	return <RouterProvider router={router} />;
+};
 
 export default AppRouter;

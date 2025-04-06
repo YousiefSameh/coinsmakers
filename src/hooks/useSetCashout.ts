@@ -13,7 +13,7 @@ const useSetCashout = () => {
 	useEffect(() => {
 		if (!cashout) {
 			toast.error("No cashout request found. Redirecting to cashout page...");
-			navigate("/dashboard/cashout");
+			navigate("/cashout");
 		}
 	}, [cashout, navigate]);
 	const handlePaymentDetails = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +26,7 @@ const useSetCashout = () => {
 		if (paymentDetails && paymentDetails.length > 0) {
 			toast.success("Cashout submitted successfully!");
 			dispatch(setCashouts({ ...cashout, paymentDetails }));
-			navigate("/dashboard/cashout/history");
+			navigate("/cashout/history");
 		} else {
 			toast.error("Invalid payment details. Please enter valid details.");
 		}

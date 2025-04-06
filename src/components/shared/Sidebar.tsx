@@ -30,7 +30,7 @@ const Sidebar = () => {
 							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
 							aria-label="Home"
 						>
-							<Link to="/dashboard/" className="flex items-center gap-5 w-full">
+							<Link to="/" className="flex items-center gap-5 w-full">
 								<div className="icon bg-[#1D202C] p-2 rounded-md">
 									<FaHome className="text-2xl" />
 								</div>
@@ -72,10 +72,7 @@ const Sidebar = () => {
 							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
 							aria-label="Cashout"
 						>
-							<Link
-								to="/dashboard/cashout"
-								className="flex items-center gap-5 w-full"
-							>
+							<Link to="/cashout" className="flex items-center gap-5 w-full">
 								<div className="icon bg-[#1D202C] p-2 rounded-md">
 									<IoCashOutline className="text-2xl" />
 								</div>

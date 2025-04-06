@@ -8,7 +8,7 @@ const Checkout = () => {
 		<div className="cart-total p-6 md:p-0 flex-1 flex flex-col gap-5">
 			<SpecialHeading title="Cashout Processed" icon={<IoCashOutline />} />
 			<div
-				className="content mt-4 flex flex-col-reverse lg:flex-row justify-between"
+				className="content mt-4 flex flex-col lg:flex-row justify-between"
 				style={{ gap: "max(12vw, 20px)" }}
 			>
 				<div className="cart-total flex-1 flex flex-col gap-5">
@@ -26,6 +26,11 @@ const Checkout = () => {
 						<div className="cart-total-details flex justify-between text-[#e2e2e2]">
 							<p>After Charge: </p>
 							<p>{cashout?.amount}</p>
+						</div>
+						<hr className="h-[1px] bg-[#555] border-none my-2.5" />
+						<div className="cart-total-details flex justify-between text-[#e2e2e2]">
+							<p>Method: </p>
+							<p>{cashout?.method}</p>
 						</div>
 						<hr className="h-[1px] bg-[#555] border-none my-2.5" />
 						<div className="cart-total-details flex justify-between text-[#e2e2e2]">
