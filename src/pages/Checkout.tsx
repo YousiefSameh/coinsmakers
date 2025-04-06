@@ -1,7 +1,6 @@
 import useSetCashout from "@hooks/useSetCashout";
 import SpecialHeading from "@components/shared/SpecialHeading";
 import { IoCashOutline } from "react-icons/io5";
-import { Navigate } from "react-router-dom";
 
 const Checkout = () => {
   const { cashout, handlePaymentDetails, handleSubmit } = useSetCashout();
@@ -56,7 +55,6 @@ const Checkout = () => {
 							<button
 								className="bg-secondary-color text-white py-3 px-1.5 cursor-pointer rounded-r-sm"
 								style={{ width: "max(10vw, 150px)" }}
-								onClick={() => Navigate({ to: "/cashout/history" })}
 							>
 								Confirm
 							</button>

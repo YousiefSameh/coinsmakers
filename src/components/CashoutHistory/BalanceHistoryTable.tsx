@@ -35,7 +35,7 @@ const BalanceHistoryTable = () => {
             </div>
           </div>
         </div>
-        <div className="my-card bg-orange-400 rounded-lg shadow-md flex flex-col gap-5 py-1">
+        <div className="my-card bg-sky-400 rounded-lg shadow-md flex flex-col gap-5 py-1">
           <div className="my-card-body bg-blue-dark h-full py-4 flex items-center justify-evenly">
             <FaCashRegister className="text-4xl text-white" />
             <div className="card-footer flex flex-col gap-1">
@@ -45,7 +45,7 @@ const BalanceHistoryTable = () => {
             </div>
           </div>
         </div>
-        <div className="my-card bg-sky-400 rounded-lg shadow-md flex flex-col gap-5 py-1">
+        <div className="my-card bg-orange-400 rounded-lg shadow-md flex flex-col gap-5 py-1">
           <div className="my-card-body bg-blue-dark h-full py-4 flex items-center justify-evenly">
             <FaClock className="text-4xl text-white" />
             <div className="card-footer flex flex-col gap-1">

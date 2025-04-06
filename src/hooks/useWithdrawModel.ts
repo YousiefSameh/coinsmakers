@@ -18,28 +18,21 @@ const useWrapperSwipe = ({ title }: { title: string }) => {
 		paymentDetails: "",
 		status: "pending",
 	});
-	const handleData = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
-			if (e.target && e.target.value) {
-				setData((prev) => ({ ...prev, amount: parseFloat(e.target.value) }));
-				console.log(data);
-			}
-		},
-		[data]
-	);
-	const handleSubmit = useCallback(
-		(e: React.FormEvent) => {
-			e.preventDefault();
-			if (data.amount < 7000 || data.amount > 10000000) {
-				console.log(data.amount);
-				toast.error("Invalid amount. Please enter a valid amount.");
-			} else {
-				dispatch(setCurrentCashout(data));
-				toast.success("Cashout request submitted successfully!");
-			}
-		},
-		[data, dispatch]
-	);
+	const handleData = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target && e.target.value) {
+			setData((prev) => ({ ...prev, amount: parseFloat(e.target.value) }));
+		}
+	}, []);
+	const handleSubmit = useCallback((e: React.FormEvent) => {
+		e.preventDefault();
+		if (data.amount < 7000 || data.amount > 10000000) {
+			console.log(data.amount);
+			toast.error("Invalid amount. Please enter a valid amount.");
+		} else {
+			dispatch(setCurrentCashout(data));
+			toast.success("Cashout request submitted successfully!");
+		}
+	}, [data, dispatch]);
   return {handleInput, handleData, handleSubmit}
 }
 

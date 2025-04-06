@@ -30,7 +30,7 @@ const WithdrawCash = () => {
 			<div className="head px-6 md:px-0">
 				<SpecialHeading title="Withdraw Cash" icon={<BiMoneyWithdraw />} />
 			</div>
-			<div className="content flex items-center overflow-x-auto gap-4 md:gap-5 p-6 md:py-6 cursor-grab">
+			<div className="content flex items-center flex-wrap gap-x-2 gap-y-4 md:gap-5 p-4 md:py-6">
 				{cardsData.map((card, index) => (
 					<WithdrawCard
 						key={index}

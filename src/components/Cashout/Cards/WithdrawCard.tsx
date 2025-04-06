@@ -14,7 +14,7 @@ const WithdrawCard = memo(
 		<>
 			<div
 				onClick={(e: React.MouseEvent<HTMLDivElement>) => onClick(e)}
-				className={`card relative p-0 md:p-3 flex items-center justify-center min-w-[8rem] md:min-w-[10rem] min-h-[13rem] flex-col hover:scale-105 transform transition duration-300 ${bgColor} group`}
+				className={`card relative p-0 md:p-3 flex items-center justify-center min-w-[7rem] md:min-w-[10rem] min-h-[13rem] flex-col hover:scale-105 transform transition duration-300 ${bgColor} group`}
 			>
 				<div className="overlay absolute top-0 left-0 h-full w-full backdrop-blur-[5px] bg-black/30 hidden items-center justify-center text-none text-5xl z-[3] rounded-lg cursor-pointer group-hover:flex">
 					<FaRegCirclePlay className="text-white" />
