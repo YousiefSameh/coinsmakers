@@ -11,7 +11,7 @@ interface ModalProps {
 }
 
 const Modal = ({ title, imgSrc, bgColor }: ModalProps) => {
-	const {handleInput, handleData, handleSubmit} = useWithdrawModel({ title });
+	const { handleInput, handleData, handleSubmit } = useWithdrawModel({ title });
 	return (
 		<dialog id={title} className="modal z-[900]">
 			<div className="modal-box p-0">
@@ -84,9 +84,7 @@ const Modal = ({ title, imgSrc, bgColor }: ModalProps) => {
 						onClick={handleSubmit}
 						className="btn btn-soft btn-lg btn-accent w-[100px]"
 					>
-						<Link to="/cashout/confirm">
-							Confirm
-						</Link>
+						<Link to="/dashboard/cashout/confirm">Confirm</Link>
 					</button>
 					<form method="dialog">
 						<button className="btn btn-soft btn-lg btn-error w-[100px]">

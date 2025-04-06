@@ -30,7 +30,7 @@ const Sidebar = () => {
 							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
 							aria-label="Home"
 						>
-							<Link to="/" className="flex items-center gap-5 w-full">
+							<Link to="/dashboard/" className="flex items-center gap-5 w-full">
 								<div className="icon bg-[#1D202C] p-2 rounded-md">
 									<FaHome className="text-2xl" />
 								</div>
@@ -72,7 +72,10 @@ const Sidebar = () => {
 							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
 							aria-label="Cashout"
 						>
-							<Link to="/cashout" className="flex items-center gap-5 w-full">
+							<Link
+								to="/dashboard/cashout"
+								className="flex items-center gap-5 w-full"
+							>
 								<div className="icon bg-[#1D202C] p-2 rounded-md">
 									<IoCashOutline className="text-2xl" />
 								</div>
@@ -100,13 +103,19 @@ const Sidebar = () => {
 					</ul>
 				</nav>
 			</aside>
-			<div className="dock dock-lg flex md:hidden z-30" role="navigation" aria-label="Mobile Dock">
+			<div
+				className="dock dock-lg flex md:hidden z-30"
+				role="navigation"
+				aria-label="Mobile Dock"
+			>
 				<button
 					onClick={() => setShowSidebar(!showSidebar)}
 					aria-label={showSidebar ? "Close Sidebar" : "Open Sidebar"}
 				>
 					<FaBars className={showSidebar ? "hidden" : "block size-[1.6rem]"} />
-					<ImCancelCircle className={showSidebar ? "block size-[1.6rem]" : "hidden"} />
+					<ImCancelCircle
+						className={showSidebar ? "block size-[1.6rem]" : "hidden"}
+					/>
 				</button>
 
 				<button

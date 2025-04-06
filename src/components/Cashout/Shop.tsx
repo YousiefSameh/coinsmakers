@@ -21,7 +21,10 @@ const Shop = () => {
 					</p>
 				</div>
 				<div className="right">
-					<Link to="/cashout/history" className="btn btn-lg btn-outline btn-success border-secondary-color text-secondary-color hover:bg-secondary-color hover:text-white">
+					<Link
+						to="/dashboard/cashout/history"
+						className="btn btn-lg btn-outline btn-success border-secondary-color text-secondary-color hover:bg-secondary-color hover:text-white"
+					>
 						History
 					</Link>
 				</div>

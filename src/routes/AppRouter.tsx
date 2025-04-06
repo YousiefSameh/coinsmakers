@@ -7,18 +7,21 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const MainTemplate = lazy(() => import("@templates/MainTemplate"));
 
 // Pages
+const Home = lazy(() => import("@pages/Home"));
 const Earn = lazy(() => import("@pages/Earn"));
 const Cashout = lazy(() => import("@pages/Cashout"));
 const Checkout = lazy(() => import("@pages/Checkout"));
 const CashoutHistory = lazy(() => import("@pages/CashoutHistory"));
+const Register = lazy(() => import("@pages/Register"));
+const Login = lazy(() => import("@pages/Login"));
 
 const router = createBrowserRouter([
 	{
-		path: "/",
+		path: "/dashboard",
 		element: <Suspense fallback={<Loading />}><MainTemplate /></Suspense>,
 		children: [
 			{
-				index: true,
+				path: "earn",
 				element: <PageSuspenseFallback><Earn /></PageSuspenseFallback>,
 			},
 			{
@@ -33,8 +36,20 @@ const router = createBrowserRouter([
 				path: "cashout/history",
 				element: <PageSuspenseFallback><CashoutHistory /></PageSuspenseFallback>,
 			},
+			{
+				path: "register",
+				element: <PageSuspenseFallback><Register /></PageSuspenseFallback>,
+			},
+			{
+				path: "login",
+				element: <PageSuspenseFallback><Login /></PageSuspenseFallback>,
+			},
 		],
 	},
+	{
+		path: "/",
+		element: <PageSuspenseFallback><Home /></PageSuspenseFallback>,
+	}
 ]);
 
 const AppRouter = () => {

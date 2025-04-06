@@ -1,8 +1,12 @@
 import Logo from "@assets/Logo.png";
 import LogoSM from "@assets/LogoSM.png";
+import Avatar from "@assets/Avatar.png";
+import { useAppSelector } from "@store/hooks";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Header = () => {
+	const { user } = useAppSelector((state) => state.auth);
 	return (
 		<>
 			<header className="navbar fixed z-50 top-0 left-0 w-full bg-[#272B3A] px-4 py-2">
@@ -13,28 +17,50 @@ const Header = () => {
 						alt="Coins Market Logo"
 					/>
 				</div>
-				<nav className="navbar-center hidden lg:flex" aria-label="Main Navigation"></nav>
+				<nav
+					className="navbar-center hidden lg:flex"
+					aria-label="Main Navigation"
+				></nav>
 				<div className="navbar-end flex items-center gap-4 md:gap-6">
-					<button
-						className="btn btn-accent text-white !px-2 hidden md:block"
-						aria-label="Open Chat"
-					>
-						<IoChatboxEllipsesOutline className="text-[28px]" />
-					</button>
-					<a
-						href="/register"
-						className="btn btn-success md:w-[100px] text-white"
-						aria-label="Register"
-					>
-						Register
-					</a>
-					<a
-						href="/login"
-						className="btn btn-secondary md:w-[100px]"
-						aria-label="Login"
-					>
-						Login
-					</a>
+					{user ? (
+						<>
+							<button
+								className="btn btn-accent text-white !px-2 hidden md:block"
+								aria-label="Open Chat"
+							>
+								<IoChatboxEllipsesOutline className="text-[28px]" />
+							</button>
+							<Link to="/dashboard/profile">
+								<button
+									className="bg-transparent"
+									aria-label="Profile"
+								>
+									<div className="avatar">
+										<div className="ring-secondary-color ring-offset-base-100 w-[40px] rounded-full ring ring-offset-2">
+											<img src={Avatar} />
+										</div>
+									</div>
+								</button>
+							</Link>
+						</>
+					) : (
+						<>
+							<Link
+								to="/dashboard/register"
+								className="btn btn-success md:w-[100px] text-white"
+								aria-label="Register"
+							>
+								Register
+							</Link>
+							<Link
+								to="/dashboard/login"
+								className="btn btn-secondary md:w-[100px]"
+								aria-label="Login"
+							>
+								Login
+							</Link>
+						</>
+					)}
 				</div>
 			</header>
 			<section

@@ -16,6 +16,7 @@ export default defineConfig({
       "@customTypes": path.resolve(__dirname, "./src/types"),
       "@styles": path.resolve(__dirname, "./src/styles"),
       "@templates": path.resolve(__dirname, "./src/templates"),
+      "@validations": path.resolve(__dirname, "./src/validations"),
     },
   },
   plugins: [react(), tailwindcss()],

@@ -29,6 +29,7 @@
       "@customTypes": ["src/types/index"],
       "@styles/*": ["src/styles/*"],
       "@templates/*": ["src/templates/*"],
+      "@validations/*": ["src/validations/*"],
     },
 
     /* Linting */
