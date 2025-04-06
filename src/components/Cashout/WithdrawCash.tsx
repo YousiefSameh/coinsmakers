@@ -4,8 +4,9 @@ import SpecialHeading from "@components/shared/SpecialHeading";
 import WithdrawCard from "./Cards/WithdrawCard";
 
 const WithdrawCash = () => {
-	const handleModalOpen = useCallback(() => {
-		const modal = document.getElementById("my_modal");
+	const handleModalOpen = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+		const titleElement = e.currentTarget.querySelector("#title") as HTMLElement | null;
+		const modal = titleElement ? document.getElementById(titleElement.innerText) : null;
 		if (modal) (modal as HTMLDialogElement).showModal();
 	}, []);
 

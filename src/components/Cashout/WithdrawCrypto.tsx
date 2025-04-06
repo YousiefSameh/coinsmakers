@@ -4,11 +4,12 @@ import { BiMoneyWithdraw } from "react-icons/bi";
 import WithdrawCard from "./Cards/WithdrawCard";
 
 const WithdrawCrypto = () => {
-	const handleModalOpen = useCallback(() => {
-		const modal = document.getElementById("my_modal");
+	const handleModalOpen = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+		const titleElement = e.currentTarget.querySelector("#title") as HTMLElement | null;
+		const modal = titleElement ? document.getElementById(titleElement.innerText) : null;
 		if (modal) (modal as HTMLDialogElement).showModal();
 	}, []);
-
+	
 	const cardsData = [
 		{
 			bgColor: "bg-[#7a7a7a]",

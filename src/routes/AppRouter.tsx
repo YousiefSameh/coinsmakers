@@ -9,6 +9,8 @@ const MainTemplate = lazy(() => import("@templates/MainTemplate"));
 // Pages
 const Earn = lazy(() => import("@pages/Earn"));
 const Cashout = lazy(() => import("@pages/Cashout"));
+const Checkout = lazy(() => import("@pages/Checkout"));
+const CashoutHistory = lazy(() => import("@pages/CashoutHistory"));
 
 const router = createBrowserRouter([
 	{
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
 			{
 				path: "cashout",
 				element: <PageSuspenseFallback><Cashout /></PageSuspenseFallback>,
+			},
+			{
+				path: "cashout/confirm",
+				element: <PageSuspenseFallback><Checkout /></PageSuspenseFallback>,
+			},
+			{
+				path: "cashout/history",
+				element: <PageSuspenseFallback><CashoutHistory /></PageSuspenseFallback>,
 			},
 		],
 	},

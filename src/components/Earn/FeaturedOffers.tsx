@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from "react";
+import useWrapperSwipe from "@hooks/useWrapperSwipe";
 import SpecialHeading from "@components/shared/SpecialHeading";
 import { FaFireAlt } from "react-icons/fa";
 import { PiCoinVerticalFill } from "react-icons/pi";
@@ -6,33 +6,7 @@ import { IoLogoAndroid } from "react-icons/io";
 import OfferCard from "./Cards/OfferCard";
 
 const FeaturedOffers = () => {
-	const scrollContainerRef = useRef<HTMLDivElement>(null);
-	const [isDragging, setIsDragging] = useState(false);
-	const [startX, setStartX] = useState(0);
-	const [scrollLeft, setScrollLeft] = useState(0);
-
-	const handleMouseDown = useCallback((e: React.MouseEvent) => {
-		if (!scrollContainerRef.current) return;
-		setIsDragging(true);
-		setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
-		setScrollLeft(scrollContainerRef.current.scrollLeft);
-	}, []);
-
-	const handleMouseMove = useCallback(
-		(e: React.MouseEvent) => {
-			if (!isDragging || !scrollContainerRef.current) return;
-			e.preventDefault();
-			const x = e.pageX - scrollContainerRef.current.offsetLeft;
-			const walk = (x - startX) * 2;
-			scrollContainerRef.current.scrollLeft = scrollLeft - walk;
-		},
-		[isDragging, startX, scrollLeft]
-	);
-
-	const handleMouseUp = useCallback(() => {
-		setIsDragging(false);
-	}, []);
-
+	const {handleMouseDown, handleMouseMove, handleMouseUp, scrollContainerRef} = useWrapperSwipe();
 	return (
 		<section className="pt-6 md:pt-0">
 			<div className="head px-6 md:px-0">
