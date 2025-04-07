@@ -1,73 +1,153 @@
-import SpecialHeading from '@components/shared/SpecialHeading'
-import { useAppSelector } from '@store/hooks'
-import { useEffect, useState } from 'react'
-import { FaCashRegister, FaChartPie, FaClock, FaLock } from 'react-icons/fa'
-import { MdAccountBalanceWallet } from 'react-icons/md'
-import { PiCoinVerticalFill } from 'react-icons/pi'
+import { motion } from "framer-motion";
+import SpecialHeading from "@components/shared/SpecialHeading";
+import { useAppSelector } from "@store/hooks";
+import { useEffect, useState } from "react";
+import { FaCashRegister, FaChartPie, FaClock, FaLock } from "react-icons/fa";
+import { MdAccountBalanceWallet } from "react-icons/md";
+import { PiCoinVerticalFill } from "react-icons/pi";
+
+// Animation variants
+const containerVariants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.2,
+			delayChildren: 0.3,
+		},
+	},
+};
+
+const itemVariants = {
+	hidden: { opacity: 0, y: 20 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			type: "spring",
+			stiffness: 120,
+			damping: 20,
+		},
+	},
+};
 
 const BalanceHistoryTable = () => {
-  const { cashouts } = useAppSelector(state => state.cashout);
-  const [ cashoutTotal, setCashoutTotal ] = useState<number>(0);
-  const handleCalculateAmountOfCashouts = () => {
-    if (!cashouts || cashouts.length === 0) {
-      setCashoutTotal(0);
-    }
-    setCashoutTotal(cashouts.reduce((total, cashout) => total + Number(cashout.amount), 0));
-  }
-  const [ DateString, setDateString ] = useState("");
-  useEffect(() => {
-    const date = new Date();
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    setDateString(date.getFullYear() + "-" + days[date.getDay()] + "-" + date.getMonth() );
-    handleCalculateAmountOfCashouts();
-  }, [cashouts])
-  return (
-    <section className="p-6 md:p-0">
-      <SpecialHeading title="Balance Now" icon={<MdAccountBalanceWallet  />} />
-      <div className="content mt-4 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-        <div className="my-card bg-secondary-color rounded-lg shadow-md flex flex-col gap-5 py-1">
-          <div className="my-card-body bg-blue-dark h-full py-4 flex items-center justify-evenly">
-            <FaChartPie className="text-4xl text-white" />
-            <div className="card-footer flex flex-col gap-1">
-              <h3 className="text-lg font-semibold">Total Balance</h3>
-              <p className="font-bold flex items-center gap-1 text-sm">0.00 <PiCoinVerticalFill className='text-yellow-400' /></p>
-              <p className="text-[10px] text-gray-500">Last updated: {DateString}</p>
-            </div>
-          </div>
-        </div>
-        <div className="my-card bg-sky-400 rounded-lg shadow-md flex flex-col gap-5 py-1">
-          <div className="my-card-body bg-blue-dark h-full py-4 flex items-center justify-evenly">
-            <FaCashRegister className="text-4xl text-white" />
-            <div className="card-footer flex flex-col gap-1">
-              <h3 className="text-lg font-semibold">Paid Balance</h3>
-              <p className="font-bold flex items-center gap-1 text-sm">0.00 <PiCoinVerticalFill className='text-yellow-400' /></p>
-              <p className="text-[10px] text-gray-500">Last updated: {DateString}</p>
-            </div>
-          </div>
-        </div>
-        <div className="my-card bg-orange-400 rounded-lg shadow-md flex flex-col gap-5 py-1">
-          <div className="my-card-body bg-blue-dark h-full py-4 flex items-center justify-evenly">
-            <FaClock className="text-4xl text-white" />
-            <div className="card-footer flex flex-col gap-1">
-              <h3 className="text-lg font-semibold">Pending Balance</h3>
-              <p className="font-bold flex items-center gap-1 text-sm">{cashoutTotal}.00 <PiCoinVerticalFill className='text-yellow-400' /></p>
-              <p className="text-[10px] text-gray-500">Last updated: {DateString}</p>
-            </div>
-          </div>
-        </div>
-        <div className="my-card bg-red-400 rounded-lg shadow-md flex flex-col gap-5 py-1">
-          <div className="my-card-body bg-blue-dark h-full py-4 flex items-center justify-evenly">
-            <FaLock className="text-4xl text-white" />
-            <div className="card-footer flex flex-col gap-1">
-              <h3 className="text-lg font-semibold">Rejected Balance</h3>
-              <p className="font-bold flex items-center gap-1 text-sm">0.00 <PiCoinVerticalFill className='text-yellow-400' /></p>
-              <p className="text-[10px] text-gray-500">Last updated: {DateString}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+	const { cashouts } = useAppSelector((state) => state.cashout);
+	const [cashoutTotal, setCashoutTotal] = useState<number>(0);
+	const [DateString, setDateString] = useState("");
 
-export default BalanceHistoryTable
+	const handleCalculateAmountOfCashouts = () => {
+		if (!cashouts || cashouts.length === 0) {
+			setCashoutTotal(0);
+			return;
+		}
+		setCashoutTotal(
+			cashouts.reduce((total, cashout) => total + Number(cashout.amount), 0)
+		);
+	};
+
+	useEffect(() => {
+		const date = new Date();
+		const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+		setDateString(
+			`${date.getFullYear()}-${days[date.getDay()]}-${date.getMonth()}`
+		);
+		handleCalculateAmountOfCashouts();
+	}, [cashouts]);
+
+	return (
+		<motion.section
+			className="p-6 md:p-0"
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 0.5 }}
+		>
+			<SpecialHeading title="Balance Now" icon={<MdAccountBalanceWallet />} />
+
+			<motion.div
+				className="content mt-4 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6"
+				variants={containerVariants}
+				initial="hidden"
+				animate="visible"
+				viewport={{ once: true }}
+			>
+				{[
+					{
+						bg: "bg-secondary-color",
+						icon: <FaChartPie />,
+						title: "Total Balance",
+						value: "0.00",
+					},
+					{
+						bg: "bg-sky-400",
+						icon: <FaCashRegister />,
+						title: "Paid Balance",
+						value: "0.00",
+					},
+					{
+						bg: "bg-orange-400",
+						icon: <FaClock />,
+						title: "Pending Balance",
+						value: `${cashoutTotal}.00`,
+					},
+					{
+						bg: "bg-red-400",
+						icon: <FaLock />,
+						title: "Rejected Balance",
+						value: "0.00",
+					},
+				].map((card, index) => (
+					<motion.div
+						key={index}
+						className={`my-card ${card.bg} rounded-lg shadow-md flex flex-col gap-5 py-1`}
+						variants={itemVariants}
+						whileHover={{ scale: 1.03 }}
+						transition={{ type: "spring", stiffness: 300 }}
+					>
+						<div className="my-card-body bg-blue-dark h-full py-4 flex items-center justify-evenly">
+							<motion.div
+								initial={{ scale: 0 }}
+								animate={{ scale: 1 }}
+								transition={{ type: "spring", delay: 0.2 + index * 0.1 }}
+                className="text-4xl text-white"
+							>
+								{card.icon}
+							</motion.div>
+
+							<div className="card-footer flex flex-col gap-1">
+								<motion.h3
+									className="text-lg font-semibold"
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									transition={{ delay: 0.4 + index * 0.1 }}
+								>
+									{card.title}
+								</motion.h3>
+
+								<motion.p
+									className="font-bold flex items-center gap-1 text-sm"
+									initial={{ scale: 0.8 }}
+									animate={{ scale: 1 }}
+								>
+									{card.value}{" "}
+									<PiCoinVerticalFill className="text-yellow-400" />
+								</motion.p>
+
+								<motion.p
+									className="text-[10px] text-gray-500"
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									transition={{ delay: 0.6 }}
+								>
+									Last updated: {DateString}
+								</motion.p>
+							</div>
+						</div>
+					</motion.div>
+				))}
+			</motion.div>
+		</motion.section>
+	);
+};
+
+export default BalanceHistoryTable;

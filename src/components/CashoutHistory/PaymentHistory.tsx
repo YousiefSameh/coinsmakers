@@ -1,9 +1,41 @@
+import { motion } from "framer-motion";
 import SpecialHeading from "@components/shared/SpecialHeading";
 import { useAppSelector } from "@store/hooks";
 import { FaCalendarAlt, FaHistory } from "react-icons/fa";
 
+const tableVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const rowVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 120, damping: 20 }
+  }
+};
+
+const headerVariants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+};
+
+const badgeVariants = {
+  hidden: { scale: 0 },
+  visible: { scale: 1, transition: { type: "spring", stiffness: 300 } }
+};
+
 const PaymenHistory = () => {
   const { cashouts } = useAppSelector(state => state.cashout);
+
   const formatDateAndDifference = (paymentDate: string | number) => {
     const paymentTime = typeof paymentDate === "string" ? parseInt(paymentDate) : paymentDate;
     const now = Date.now();
@@ -35,41 +67,75 @@ const PaymenHistory = () => {
       timeDifference,
     };
   };
-	return (
-		<section className="p-6 md:p-0 mt-[50px] md:mt-[100px]">
-			<SpecialHeading title="Payment History" icon={<FaHistory />} />
-			<div className="content mt-4">
-				<div className="overflow-x-auto border border-base-content/5 bg-base-100">
-					<table className="table table-zebra">
-						{/* head */}
-						<thead className="bg-secondary-color text-white">
-							<tr>
-								<th>Date</th>
-								<th>Amount</th>
-								<th>Method</th>
-								<th>Payment Details</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody>
+
+  return (
+    <motion.section 
+      className="p-6 md:p-0 mt-[50px] md:mt-[100px]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <SpecialHeading title="Payment History" icon={<FaHistory />} />
+      
+      <div className="content mt-4">
+        <motion.div 
+          className="overflow-x-auto border border-base-content/5 bg-base-100"
+          initial="hidden"
+          animate="visible"
+          variants={tableVariants}
+          viewport={{ once: true }}
+        >
+          <table className="table table-zebra">
+            <motion.thead 
+              className="bg-secondary-color text-white"
+              variants={headerVariants}
+            >
+              <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Method</th>
+                <th>Payment Details</th>
+                <th>Status</th>
+              </tr>
+            </motion.thead>
+            
+            <motion.tbody>
               {cashouts.map((item, index) => (
-                <tr key={index}>
-                  <th className="flex flex-col">
-                    <span className="flex items-center gap-1"><FaCalendarAlt /> {formatDateAndDifference(item.date).formattedDate}</span>
-                    <span className="text-base-content/60">{formatDateAndDifference(item.date).timeDifference}</span>
-                  </th>
+                <motion.tr
+                  key={index}
+                  variants={rowVariants}
+                >
+                  <td className="flex flex-col">
+                    <span className="flex items-center gap-1">
+                      <FaCalendarAlt /> 
+                      {formatDateAndDifference(item.date).formattedDate}
+                    </span>
+                    <span className="text-base-content/60">
+                      {formatDateAndDifference(item.date).timeDifference}
+                    </span>
+                  </td>
                   <td>{item.amount}</td>
                   <td>{item.method}</td>
                   <td>{item.paymentDetails}</td>
-                  <td className={`badge badge-sm ${item.status === "pending" ? "badge-warning" : item.status === "completed" ? "badge-success" : "badge-error"} text-white`}>{item.status}</td>
-                </tr>
+                  <td>
+                    <motion.span
+                      className={`badge badge-sm ${
+                        item.status === "pending" ? "badge-warning" :
+                        item.status === "completed" ? "badge-success" : "badge-error"
+                      } text-white`}
+                      variants={badgeVariants}
+                    >
+                      {item.status}
+                    </motion.span>
+                  </td>
+                </motion.tr>
               ))}
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</section>
-	);
+            </motion.tbody>
+          </table>
+        </motion.div>
+      </div>
+    </motion.section>
+  );
 };
 
 export default PaymenHistory;

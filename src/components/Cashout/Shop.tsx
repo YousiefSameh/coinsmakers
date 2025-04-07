@@ -25,7 +25,7 @@ const Shop = () => {
 						to="/cashout/history"
 						className="btn btn-lg btn-outline btn-success border-secondary-color text-secondary-color hover:bg-secondary-color hover:text-white"
 					>
-						History
+						View History
 					</Link>
 				</div>
 			</div>
