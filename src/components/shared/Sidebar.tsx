@@ -83,19 +83,23 @@ const Sidebar = () => {
 							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
 							aria-label="Ranking"
 						>
-							<div className="icon bg-[#1D202C] p-2 rounded-md">
-								<PiRanking className="text-2xl" />
-							</div>
-							<p className="text-lg">Ranking</p>
+							<Link to="/ranking" className="flex items-center gap-5 w-full">
+								<div className="icon bg-[#1D202C] p-2 rounded-md">
+									<PiRanking className="text-2xl" />
+								</div>
+								<p className="text-lg">Ranking</p>
+							</Link>
 						</li>
 						<li
 							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
 							aria-label="Rewards"
 						>
-							<div className="icon bg-[#1D202C] p-2 rounded-md">
-								<RiMedalLine className="text-2xl" />
-							</div>
-							<p className="text-lg">Rewards</p>
+							<Link to="/rewards" className="flex items-center gap-5 w-full">
+								<div className="icon bg-[#1D202C] p-2 rounded-md">
+									<RiMedalLine className="text-2xl" />
+								</div>
+								<p className="text-lg">Rewards</p>
+							</Link>
 						</li>
 					</ul>
 				</nav>
@@ -115,23 +119,25 @@ const Sidebar = () => {
 					/>
 				</button>
 
-				<button
+				<Link
+					to="/ranking"
 					onClick={() => setActiveDock("ranking")}
 					className={activeDock === "ranking" ? "dock-active" : ""}
 					aria-label="Ranking"
 				>
 					<PiRanking className="size-[1.2rem]" />
 					<span className="dock-label">Ranking</span>
-				</button>
+				</Link>
 
-				<button
+				<Link
+					to="/rewards"
 					onClick={() => setActiveDock("rewards")}
 					className={activeDock === "rewards" ? "dock-active" : ""}
 					aria-label="Rewards"
 				>
 					<RiMedalLine className="size-[1.2rem]" />
 					<span className="dock-label">Rewards</span>
-				</button>
+				</Link>
 
 				<button
 					onClick={() => setActiveDock("chat")}

@@ -1,5 +1,6 @@
 import Loading from "@components/feedback/Loading";
 import PageSuspenseFallback from "@components/feedback/PageSuspenseFallback";
+import ProtectedRoute from "@components/feedback/ProtectedRoute";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -14,6 +15,7 @@ const Checkout = lazy(() => import("@pages/Checkout"));
 const CashoutHistory = lazy(() => import("@pages/CashoutHistory"));
 const Register = lazy(() => import("@pages/Register"));
 const Login = lazy(() => import("@pages/Login"));
+const Ranking = lazy(() => import("@pages/Ranking"));
 
 const router = createBrowserRouter([
 	{
@@ -28,7 +30,9 @@ const router = createBrowserRouter([
 				index: true,
 				element: (
 					<PageSuspenseFallback>
-						<Earn />
+						<ProtectedRoute>
+							<Earn />
+						</ProtectedRoute>
 					</PageSuspenseFallback>
 				),
 			},
@@ -36,7 +40,9 @@ const router = createBrowserRouter([
 				path: "cashout",
 				element: (
 					<PageSuspenseFallback>
-						<Cashout />
+						<ProtectedRoute>
+							<Cashout />
+						</ProtectedRoute>
 					</PageSuspenseFallback>
 				),
 			},
@@ -44,7 +50,9 @@ const router = createBrowserRouter([
 				path: "cashout/confirm",
 				element: (
 					<PageSuspenseFallback>
-						<Checkout />
+						<ProtectedRoute>
+							<Checkout />
+						</ProtectedRoute>
 					</PageSuspenseFallback>
 				),
 			},
@@ -52,7 +60,9 @@ const router = createBrowserRouter([
 				path: "cashout/history",
 				element: (
 					<PageSuspenseFallback>
-						<CashoutHistory />
+						<ProtectedRoute>
+							<CashoutHistory />
+						</ProtectedRoute>
 					</PageSuspenseFallback>
 				),
 			},
@@ -60,7 +70,9 @@ const router = createBrowserRouter([
 				path: "register",
 				element: (
 					<PageSuspenseFallback>
-						<Register />
+						<ProtectedRoute restrictedForAuthenticated>
+							<Register />
+						</ProtectedRoute>
 					</PageSuspenseFallback>
 				),
 			},
@@ -68,7 +80,19 @@ const router = createBrowserRouter([
 				path: "login",
 				element: (
 					<PageSuspenseFallback>
-						<Login />
+						<ProtectedRoute restrictedForAuthenticated>
+							<Login />
+						</ProtectedRoute>
+					</PageSuspenseFallback>
+				),
+			},
+			{
+				path: "ranking",
+				element: (
+					<PageSuspenseFallback>
+						<ProtectedRoute>
+							<Ranking />
+						</ProtectedRoute>
 					</PageSuspenseFallback>
 				),
 			},

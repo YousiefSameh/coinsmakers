@@ -6,7 +6,6 @@ import { z } from "zod";
 import { registerSchema } from "@validations/RegisterSchema";
 import { useEffect, useState } from "react";
 import {
-	loginFailure,
 	loginRequest,
 	loginSuccess,
 } from "@store/auth/AuthSlice";
@@ -38,9 +37,6 @@ const Register = () => {
 				})
 			);
 			navigate("/", { replace: true });
-			return () => {
-				dispatch(loginFailure("Failed to register user"));
-			};
 		}
 	}, [dispatch, formData, navigate]);
 

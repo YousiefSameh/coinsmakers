@@ -6,7 +6,6 @@ import { z } from "zod";
 import { loginSchema } from "@validations/LoginSchema";
 import { useEffect, useState } from "react";
 import {
-	loginFailure,
 	loginRequest,
 	loginSuccess,
 } from "@store/auth/AuthSlice";
@@ -40,10 +39,6 @@ const Login = () => {
 			)
 			toast.success("Login successful");
 			navigate("/", { replace: true });
-			return () => {
-				dispatch(loginFailure("Failed to register user"));
-				toast.error("Login failed. Please try again.");
-			};
 		}
 	}, [dispatch, formData, navigate]);
 
@@ -75,7 +70,7 @@ const Login = () => {
 					<fieldset className="fieldset">
 						<legend className="fieldset-legend">Password</legend>
 						<input
-							type="text"
+							type="password"
 							className={`input border-secondary-color text-white w-full ${
 								errors.password?.message
 									? "input-error border-red-400 outline-red-400"
