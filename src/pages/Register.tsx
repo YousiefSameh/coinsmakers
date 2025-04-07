@@ -34,7 +34,7 @@ const Register = () => {
 			dispatch(loginRequest());
 			dispatch(
 				loginSuccess({
-					user: { identifier: formData.identifier },
+					user: { username: formData.username, email: formData.email },
 				})
 			);
 			navigate("/", { replace: true });
@@ -55,25 +55,41 @@ const Register = () => {
 			<form onSubmit={handleSubmit(submitForm)} className="content">
 				<div className="flex flex-col gap-4 mt-5 w-full">
 					<fieldset className="fieldset">
-						<legend className="fieldset-legend">Username Or Email Address</legend>
+						<legend className="fieldset-legend">Username</legend>
 						<input
 							type="text"
 							className={`input border-secondary-color text-white w-full ${
-								errors.identifier?.message
+								errors.username?.message
 									? "input-error border-red-400 outline-red-400"
 									: ""
 							}`}
 							placeholder="Write here ..."
-							{...register("identifier")}
+							{...register("username")}
 						/>
 						<p className="fieldset-label text-red-400">
-							{errors.identifier?.message}
+							{errors.username?.message}
+						</p>
+					</fieldset>
+					<fieldset className="fieldset">
+						<legend className="fieldset-legend">Email</legend>
+						<input
+							type="text"
+							className={`input border-secondary-color text-white w-full ${
+								errors.email?.message
+									? "input-error border-red-400 outline-red-400"
+									: ""
+							}`}
+							placeholder="Write here ..."
+							{...register("email")}
+						/>
+						<p className="fieldset-label text-red-400">
+							{errors.email?.message}
 						</p>
 					</fieldset>
 					<fieldset className="fieldset">
 						<legend className="fieldset-legend">Password</legend>
 						<input
-							type="text"
+							type="password"
 							className={`input border-secondary-color text-white w-full ${
 								errors.password?.message
 									? "input-error border-red-400 outline-red-400"
@@ -89,7 +105,7 @@ const Register = () => {
 					<fieldset className="fieldset">
 						<legend className="fieldset-legend">Confirm Password</legend>
 						<input
-							type="text"
+							type="password"
 							className={`input border-secondary-color text-white w-full ${
 								errors.confirmPassword?.message
 									? "input-error border-red-400 outline-red-400"
