@@ -32,12 +32,18 @@ const Header = () => {
 								className="btn btn-accent text-white !px-2 hidden md:block"
 								aria-label="Open Chat"
 							>
-								<IoChatboxEllipsesOutline className="text-[28px]" />
+								<IoChatboxEllipsesOutline className="sm:text-base md:text-[28px]" />
+							</button>
+							<button className="btn btn-sm md:btn-md border-none bg-transparent text-white !px-2 flex items-center gap-2">
+								<span className="text-sm md:text-lg text-yellow-400">
+									<FaCoins />
+								</span>
+								<span className="text-sm md:text-lg">100.00</span>
 							</button>
 							<div className="dropdown dropdown-end">
 								<label tabIndex={0} className="cursor-pointer">
 									<div className="avatar">
-										<div className="ring-secondary-color ring-offset-base-100 w-[40px] rounded-full ring ring-offset-2">
+										<div className="ring-secondary-color ring-offset-base-100 w-[30px] md:w-[40px] rounded-full ring ring-offset-2">
 											<img src={Avatar} alt="User Avatar" />
 										</div>
 									</div>
@@ -61,15 +67,13 @@ const Header = () => {
 									</li>
 								</ul>
 							</div>
-							<button className="btn btn-sm md:btn-md border-none bg-transparent text-white !px-2 flex items-center gap-2">
-								<span className="text-sm md:text-lg text-yellow-400"><FaCoins /></span>
-								<span className="text-sm md:text-lg">100.00</span>
-							</button>
 							<button
 								className="btn btn-sm md:btn-md border-none bg-transparent text-white !px-2 block"
 								aria-label="Notifications"
 							>
-								<span className="text-lg md:text-[28px]"><FaBell /></span>
+								<span className="text-lg md:text-[28px]">
+									<FaBell />
+								</span>
 							</button>
 						</>
 					) : (
