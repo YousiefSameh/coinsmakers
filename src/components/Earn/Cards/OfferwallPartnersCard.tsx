@@ -57,7 +57,7 @@ const OfferwallPartnersCard = memo(({ item }: { item: (typeof offerwalls)[0] }) 
     >
       <motion.div
         onClick={handleModalOpen}
-        className={`relative w-full h-full min-h-[12rem] md:min-h-[14rem] from-[#1D232A] via-[#1D232A] to-[#1D232A] flex flex-col items-center justify-center rounded-lg shadow-lg hover:${item.bg} transition-colors border border-[#3b7d67] group`}
+        className={`relative w-full h-full min-h-[12rem] md:min-h-[16rem] from-[#1D232A] via-[#1D232A] to-[#1D232A] flex flex-col items-center justify-center rounded-lg shadow-lg hover:${item.bg} transition-colors border border-[#3b7d67] group`}
         whileHover={{ scale: 1.02 }}
       >
         <motion.div
