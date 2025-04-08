@@ -58,7 +58,7 @@ const SurveyPartners = () => {
 
 	return (
 		<section>
-			<div className="head px-6 md:px-0">
+			<div className="head px-3 md:px-0">
 				<SpecialHeading title="Survey Partners" icon={<BsJoystick />} />
 			</div>
 			<div
