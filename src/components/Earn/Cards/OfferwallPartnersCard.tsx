@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import { FaRegCirclePlay } from "react-icons/fa6";
@@ -43,6 +43,10 @@ const starVariants = {
 };
 
 const OfferwallPartnersCard = memo(({ item }: { item: (typeof data)[0] }) => {
+	const handleModalOpen = useCallback(() => {
+		const modal = document.getElementById("my_iframe");
+		if (modal) (modal as HTMLDialogElement).showModal();
+	}, []);
   return (
     <motion.div
       className="card p-0 md:p-3 flex min-w-[6rem] md:min-w-[11rem] justify-center flex-col"
@@ -52,6 +56,7 @@ const OfferwallPartnersCard = memo(({ item }: { item: (typeof data)[0] }) => {
       whileHover="hover"
     >
       <motion.div
+        onClick={handleModalOpen}
         className={`relative w-full h-full min-h-[13rem] from-[#1D232A] via-[#1D232A] to-[#1D232A] flex flex-col items-center justify-center rounded-lg shadow-lg hover:${item.bg} transition-colors border border-[#3b7d67] group`}
         whileHover={{ scale: 1.02 }}
       >

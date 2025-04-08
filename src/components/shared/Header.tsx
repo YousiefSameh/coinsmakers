@@ -61,7 +61,7 @@ const Header = () => {
 								</ul>
 							</div>
 							<button
-								className="btn btn-secondary text-white !px-2 hidden md:block"
+								className="btn border-none bg-transparent text-white !px-2 hidden md:block"
 								aria-label="Notifications"
 							>
 								<span className="text-[28px]"><FaBell /></span>

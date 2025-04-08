@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
 	const [showMenu, setShowMenu] = useState(false);
 	const [showSidebar, setShowSidebar] = useState(false);
-	const [activeDock, setActiveDock] = useState("ranking");
+	const [activeDock, setActiveDock] = useState("earn");
 
 	return (
 		<>
@@ -120,19 +120,29 @@ const Sidebar = () => {
 				</button>
 
 				<Link
-					to="/ranking"
-					onClick={() => setActiveDock("ranking")}
-					className={activeDock === "ranking" ? "dock-active" : ""}
-					aria-label="Ranking"
+					to="/cashout"
+					onClick={() => setActiveDock("cashout")}
+					className={activeDock === "cashout" ? "bg-secondary-color -translate-y-2" : ""}
+					aria-label="Cashout"
 				>
-					<PiRanking className="size-[1.2rem]" />
-					<span className="dock-label">Ranking</span>
+					<IoCashOutline className="size-[1.2rem]" />
+					<span className="dock-label">Cashout</span>
+				</Link>
+
+				<Link
+					to="/earn"
+					onClick={() => setActiveDock("earn")}
+					className={activeDock === "earn" ? "bg-secondary-color -translate-y-2" : ""}
+					aria-label="Earn"
+				>
+					<TbCoins className="size-[1.2rem]" />
+					<span className="dock-label">Earn</span>
 				</Link>
 
 				<Link
 					to="/rewards"
 					onClick={() => setActiveDock("rewards")}
-					className={activeDock === "rewards" ? "dock-active" : ""}
+					className={activeDock === "rewards" ? "bg-secondary-color -translate-y-2" : ""}
 					aria-label="Rewards"
 				>
 					<RiMedalLine className="size-[1.2rem]" />
@@ -141,11 +151,11 @@ const Sidebar = () => {
 
 				<button
 					onClick={() => setActiveDock("chat")}
-					className={activeDock === "chat" ? "dock-active" : ""}
+					className={activeDock === "chat" ? "bg-secondary-color -translate-y-2" : ""}
 					aria-label="Chat"
 				>
 					<IoChatboxEllipsesOutline className="size-[1.2rem]" />
-					<span className="dock-label dock-active">Chat</span>
+					<span className="dock-label">Chat</span>
 				</button>
 			</div>
 		</>

@@ -5,7 +5,12 @@ import SpecialHeading from "@components/shared/SpecialHeading";
 import OfferwallPartnersCard from "./Cards/OfferwallPartnersCard";
 
 const OfferwallPartners = () => {
-	const {handleMouseDown, handleMouseMove, handleMouseUp, scrollContainerRef} = useWrapperSwipe();
+	const {
+		handleMouseDown,
+		handleMouseMove,
+		handleMouseUp,
+		scrollContainerRef,
+	} = useWrapperSwipe();
 
 	return (
 		<section>
@@ -25,6 +30,20 @@ const OfferwallPartners = () => {
 					<OfferwallPartnersCard key={index} item={item} />
 				))}
 			</div>
+			<dialog id="my_iframe" className="modal">
+				<div className="modal-box p-6 w-11/12 max-w-6xl max-h-[90vh] h-full">
+					<form method="dialog">
+						{/* if there is a button in form, it will close the modal */}
+						<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+							✕
+						</button>
+					</form>
+					<iframe
+						src="https://coinsmakers.vercel.app/"
+						className="w-full h-full rounded-lg p-5"
+					/>
+				</div>
+			</dialog>
 		</section>
 	);
 };
