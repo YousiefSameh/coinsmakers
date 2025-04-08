@@ -6,6 +6,7 @@ import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { logout } from "@store/auth/AuthSlice";
 import { FaBell } from "react-icons/fa";
+import { FaCoins } from "react-icons/fa6";
 
 const Header = () => {
 	const dispatch = useAppDispatch();
@@ -60,8 +61,12 @@ const Header = () => {
 									</li>
 								</ul>
 							</div>
+							<button className="btn border-none bg-transparent text-white !px-2 flex items-center gap-2">
+								<span className="text-lg text-yellow-400"><FaCoins /></span>
+								<span className="text-lg">100.00</span>
+							</button>
 							<button
-								className="btn border-none bg-transparent text-white !px-2 hidden md:block"
+								className="btn border-none bg-transparent text-white !px-2 block"
 								aria-label="Notifications"
 							>
 								<span className="text-[28px]"><FaBell /></span>

@@ -80,7 +80,7 @@ const OfferwallPartnersCard = memo(({ item }: { item: (typeof offerwalls)[0] }) 
 
         <motion.img
           src={item.img}
-          className="h-[40px] md:h-fit w-[65px] md:w-[100px] mb-6 drop-shadow-lg"
+          className="h-[30px] md:h-fit w-[65px] md:w-[80px] mb-6 drop-shadow-lg"
           loading="lazy"
           alt="Card Image"
           initial={{ scale: 0.9 }}
