@@ -61,15 +61,15 @@ const Header = () => {
 									</li>
 								</ul>
 							</div>
-							<button className="btn border-none bg-transparent text-white !px-2 flex items-center gap-2">
-								<span className="text-lg text-yellow-400"><FaCoins /></span>
-								<span className="text-lg">100.00</span>
+							<button className="btn btn-sm md:btn-md border-none bg-transparent text-white !px-2 flex items-center gap-2">
+								<span className="text-sm md:text-lg text-yellow-400"><FaCoins /></span>
+								<span className="text-sm md:text-lg">100.00</span>
 							</button>
 							<button
-								className="btn border-none bg-transparent text-white !px-2 block"
+								className="btn btn-sm md:btn-md border-none bg-transparent text-white !px-2 block"
 								aria-label="Notifications"
 							>
-								<span className="text-[28px]"><FaBell /></span>
+								<span className="text-lg md:text-[28px]"><FaBell /></span>
 							</button>
 						</>
 					) : (
