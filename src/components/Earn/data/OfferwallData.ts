@@ -1,4 +1,4 @@
-export const data = [
+export const offerwalls = [
   {
     img: "https://coinsmakers.com/asset/uploads/offerwalls/67337603323cd1731425795.png",
     name: "Adscendmedia",
@@ -72,3 +72,108 @@ export const data = [
     salePercent: "+16%"
   },
 ];
+
+export const survey = [
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+  {
+    img: "https://coinsmakers.com/asset/uploads/offerwalls/65b3ca0b736f21706281483.png",
+    name: "Cpxresearch",
+    bg: "bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] hover:from-[#3b7d67]",
+    salePercent: "+20%"
+  },
+]

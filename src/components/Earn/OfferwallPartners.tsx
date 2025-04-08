@@ -1,6 +1,6 @@
 import useWrapperSwipe from "@hooks/useWrapperSwipe";
 import { BsJoystick } from "react-icons/bs";
-import { data } from "./data/OfferwallData";
+import { offerwalls } from "./data/OfferwallData";
 import SpecialHeading from "@components/shared/SpecialHeading";
 import OfferwallPartnersCard from "./Cards/OfferwallPartnersCard";
 
@@ -26,7 +26,7 @@ const OfferwallPartners = () => {
 				onMouseUp={handleMouseUp}
 				onMouseLeave={handleMouseUp}
 			>
-				{data.map((item, index) => (
+				{offerwalls.map((item, index) => (
 					<OfferwallPartnersCard key={index} item={item} />
 				))}
 			</div>

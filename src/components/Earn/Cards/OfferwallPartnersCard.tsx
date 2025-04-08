@@ -2,7 +2,7 @@ import { memo, useCallback } from "react";
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import { FaRegCirclePlay } from "react-icons/fa6";
-import { data } from "../data/OfferwallData";
+import { offerwalls } from "../data/OfferwallData";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -42,7 +42,7 @@ const starVariants = {
   })
 };
 
-const OfferwallPartnersCard = memo(({ item }: { item: (typeof data)[0] }) => {
+const OfferwallPartnersCard = memo(({ item }: { item: (typeof offerwalls)[0] }) => {
 	const handleModalOpen = useCallback(() => {
 		const modal = document.getElementById("my_iframe");
 		if (modal) (modal as HTMLDialogElement).showModal();
@@ -57,7 +57,7 @@ const OfferwallPartnersCard = memo(({ item }: { item: (typeof data)[0] }) => {
     >
       <motion.div
         onClick={handleModalOpen}
-        className={`relative w-full h-full min-h-[12rem] md:min-h-[13rem] from-[#1D232A] via-[#1D232A] to-[#1D232A] flex flex-col items-center justify-center rounded-lg shadow-lg hover:${item.bg} transition-colors border border-[#3b7d67] group`}
+        className={`relative w-full h-full min-h-[12rem] md:min-h-[14rem] from-[#1D232A] via-[#1D232A] to-[#1D232A] flex flex-col items-center justify-center rounded-lg shadow-lg hover:${item.bg} transition-colors border border-[#3b7d67] group`}
         whileHover={{ scale: 1.02 }}
       >
         <motion.div
