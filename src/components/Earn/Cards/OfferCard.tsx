@@ -31,7 +31,7 @@ const OfferCard = memo(({ index }: { index: number }) => {
 
 	return (
 		<motion.div
-			className="card bg-panel-bg p-3 min-w-[6rem] md:min-w-[11rem] flex justify-center flex-col"
+			className="card bg-panel-bg p-3 min-w-[7rem] md:min-w-[11rem] flex justify-center flex-col"
 			variants={cardVariants}
 			initial="hidden"
 			animate="visible"

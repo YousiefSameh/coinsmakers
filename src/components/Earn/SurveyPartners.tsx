@@ -23,7 +23,7 @@ const SurveyPartners = () => {
 			Array.from({ length: 12 }, (_, index) => (
 				<div
 					key={index}
-					className="card p-0 md:p-3 flex min-w-[6rem] md:min-w-[11rem] justify-center flex-col hover:scale-105 transform transition duration-300"
+					className="card p-0 md:p-3 flex min-w-[7rem] md:min-w-[11rem] justify-center flex-col hover:scale-105 transform transition duration-300"
 				>
 					<div onClick={handleModalOpen} className="relative w-full h-full min-h-[13rem] bg-gradient-to-b from-[#1D232A] via-[#1D232A] to-[#1D232A] flex flex-col items-center justify-center rounded-lg shadow-lg hover:shadow-2xl hover:bg-gradient-to-b hover:from-[#3b7d67] transition-colors border border-[#3b7d67] group">
 						<div className="overlay absolute top-0 left-0 h-full w-full backdrop-blur-[5px] hidden items-center justify-center text-none text-5xl z-[3] rounded-lg cursor-pointer group-hover:flex">
@@ -63,7 +63,7 @@ const SurveyPartners = () => {
 			</div>
 			<div
 				ref={scrollContainerRef}
-				className="content flex items-center overflow-x-auto gap-4 md:gap-5 p-6 md:py-6 cursor-grab"
+				className="content flex items-center overflow-x-auto gap-3 md:gap-5 px-3 py-5 cursor-grab"
 				style={{ scrollbarWidth: "none" }}
 				onMouseDown={handleMouseDown}
 				onMouseMove={handleMouseMove}

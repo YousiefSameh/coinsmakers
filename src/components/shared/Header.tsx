@@ -88,28 +88,28 @@ const Header = () => {
 				</div>
 			</header>
 			<section
-				className="titles mt-[100px] z-10 flex items-center gap-4 px-4 pb-3 relative overflow-auto w-full"
+				className="titles mt-[75px] md:mt-[100px] z-10 flex items-center gap-4 px-4 pb-3 relative overflow-auto w-full"
 				aria-label="User Titles"
 			>
 				{Array.from({ length: 9 }, (_, index) => index).map((index) => {
 					return (
 						<article
 							key={index}
-							className="min-w-[160px] bg-[#2a2e3f] border-2 border-blue-light p-[5px] rounded-lg flex items-center justify-between cursor-pointer"
+							className="min-w-[135px] sm:min-w-[160px] bg-[#2a2e3f] border-2 border-blue-light p-[5px] rounded-lg flex items-center justify-between cursor-pointer"
 							aria-label={`User ${index + 1}`}
 						>
 							<img
 								src={LogoSM}
-								className="w-7.5"
+								className="w-5 md:w-7.5"
 								alt={`User ${index + 1} Avatar`}
 							/>
-							<p className="text-[10px] text-base-content/60">
+							<p className="text-[8px] sm:text-[9px] text-base-content/60">
 								Robsn.
 								<br />
 								Admin. Gift.
 							</p>
 							<span
-								className="badge badge-success text-white text-[10px] py-[3px] px-[7px]"
+								className="badge badge-success text-white text-[8px] sm:text-[9px] py-[3px] px-[7px]"
 								aria-label="Balance"
 							>
 								$200.00

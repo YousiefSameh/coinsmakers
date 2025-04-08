@@ -49,7 +49,7 @@ const OfferwallPartnersCard = memo(({ item }: { item: (typeof data)[0] }) => {
 	}, []);
   return (
     <motion.div
-      className="card p-0 md:p-3 flex min-w-[6rem] md:min-w-[11rem] justify-center flex-col"
+      className="card p-0 md:p-3 flex min-w-[7rem] md:min-w-[11rem] justify-center flex-col"
       variants={cardVariants}
       initial="hidden"
       animate="visible"
@@ -57,7 +57,7 @@ const OfferwallPartnersCard = memo(({ item }: { item: (typeof data)[0] }) => {
     >
       <motion.div
         onClick={handleModalOpen}
-        className={`relative w-full h-full min-h-[13rem] from-[#1D232A] via-[#1D232A] to-[#1D232A] flex flex-col items-center justify-center rounded-lg shadow-lg hover:${item.bg} transition-colors border border-[#3b7d67] group`}
+        className={`relative w-full h-full min-h-[12rem] md:min-h-[13rem] from-[#1D232A] via-[#1D232A] to-[#1D232A] flex flex-col items-center justify-center rounded-lg shadow-lg hover:${item.bg} transition-colors border border-[#3b7d67] group`}
         whileHover={{ scale: 1.02 }}
       >
         <motion.div

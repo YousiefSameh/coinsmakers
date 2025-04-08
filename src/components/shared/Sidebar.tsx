@@ -21,7 +21,7 @@ const Sidebar = () => {
 				} md:block w-[210px] md:w-[240px] z-20 bg-[#272B3A] max-h-screen h-full fixed top-0 left-0 overflow-y-auto py-4 shadow-lg border-r border-blue-light`}
 				aria-label="Sidebar Navigation"
 			>
-				<nav className="p-2 mt-[70px]" role="navigation">
+				<nav className="p-2 mt-[45px] md:mt-[70px]" role="navigation">
 					<p className="uppercase text-neutral-400 text-sm mb-3 p-2 pb-0">
 						Main
 					</p>

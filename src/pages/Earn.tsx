@@ -4,7 +4,7 @@ import SurveyPartners from "@components/Earn/SurveyPartners"
 
 const Earn = () => {
   return (
-    <div className="space-y-[30px] md:space-y-[100px]">
+    <div className="space-y-[10px] md:space-y-[100px]">
       <FeaturedOffers />
       <OfferwallPartners />
       <SurveyPartners />

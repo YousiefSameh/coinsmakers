@@ -9,12 +9,12 @@ const FeaturedOffers = () => {
 	const {handleMouseDown, handleMouseMove, handleMouseUp, scrollContainerRef} = useWrapperSwipe();
 	return (
 		<section className="pt-6 md:pt-0">
-			<div className="head px-6 md:px-0">
+			<div className="head px-3 md:px-0">
 				<SpecialHeading title="Featured Offers" icon={<FaFireAlt />} />
 			</div>
 			<div
 				ref={scrollContainerRef}
-				className="content flex items-center overflow-x-auto gap-4 md:gap-5 px-6 py-6 cursor-grab"
+				className="content flex items-center overflow-x-auto gap-2 md:gap-5 px-3 py-5 cursor-grab"
 				style={{ scrollbarWidth: "none" }}
 				onMouseDown={handleMouseDown}
 				onMouseMove={handleMouseMove}
