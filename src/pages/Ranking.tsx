@@ -183,7 +183,7 @@ const Ranking = () => {
             variants={podiumVariants}
           >
             <FaCrown className="text-5xl md:text-6xl text-yellow-400 mb-2 md:mb-4" />
-            <h3 className="text-white text-sm md:text-2xl font-bold text-center">
+            <h3 className="text-white text-[10px] md:text-2xl font-bold text-center">
               {topThree[0]?.name}
             </h3>
             <div className="flex items-center gap-2 mt-2">
@@ -203,7 +203,7 @@ const Ranking = () => {
             variants={podiumVariants}
           >
             <FaMedal className="text-3xl md:text-4xl text-amber-600 mb-2 md:mb-4" />
-            <h3 className="text-white text-[8px] md:text-lg font-bold text-center">
+            <h3 className="text-white text-[10px] md:text-lg font-bold text-center">
               {topThree[2]?.name}
             </h3>
             <div className="flex items-center gap-2 mt-2">
