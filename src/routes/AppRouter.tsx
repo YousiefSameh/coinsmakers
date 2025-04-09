@@ -1,6 +1,7 @@
 import Loading from "@components/feedback/Loading";
 import PageSuspenseFallback from "@components/feedback/PageSuspenseFallback";
 import ProtectedRoute from "@components/feedback/ProtectedRoute";
+import ProfileTemplate from "@templates/ProfileTemplate";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -16,6 +17,7 @@ const CashoutHistory = lazy(() => import("@pages/CashoutHistory"));
 const Register = lazy(() => import("@pages/Register"));
 const Login = lazy(() => import("@pages/Login"));
 const Ranking = lazy(() => import("@pages/Ranking"));
+const About = lazy(() => import("@pages/Profile/About"));
 
 const router = createBrowserRouter([
 	{
@@ -95,6 +97,28 @@ const router = createBrowserRouter([
 						</ProtectedRoute>
 					</PageSuspenseFallback>
 				),
+			},
+			{
+				path: "profile",
+				element: (
+					<PageSuspenseFallback>
+						<ProtectedRoute>
+							<ProfileTemplate />
+						</ProtectedRoute>
+					</PageSuspenseFallback>
+				),
+				children: [
+					{
+						index: true,
+						element: (
+							<PageSuspenseFallback>
+								<ProtectedRoute>
+									<About />
+								</ProtectedRoute>
+							</PageSuspenseFallback>
+						),
+					},
+				],
 			},
 		],
 	},
