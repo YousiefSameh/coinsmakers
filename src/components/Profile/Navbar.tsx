@@ -1,16 +1,70 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+const navbarLinks = [
+  { path: "/profile", id: "about", text: "About" },
+  { path: "/profile/update", id: "update", text: "Edit Profile" },
+  { path: "/profile/password", id: "password", text: "Change Password" },
+  {
+    path: "/profile/twofactor",
+    id: "twofactor",
+    text: "2-FA Authentication",
+  },
+  { path: "/profile/account", id: "account", text: "Account Settings" },
+];
+
 const Navbar = () => {
-  const [ active, setActive ] = useState("about");
+  const [active, setActive] = useState("about");
+
+  // Animation variants
+  const navVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
   return (
-    <nav className="flex items-center gap-2 border-b border-gray-500 w-full overflow-x-auto px-2 md:p-0">
-      <Link to="/profile" onClick={() => setActive("about")} className={`min-w-fit max-w-[350px] w-full flex items-center justify-center px-4 py-2.5 ${active === "about" ? "bg-secondary-color" : "bg-blue-middle"} text-base md:text-lg hover:bg-secondary-color rounded-t-sm`}>Home</Link>
-      <Link to="/profile/update" onClick={() => setActive("update")} className={`min-w-fit max-w-[350px] w-full flex items-center justify-center px-4 py-2.5 ${active === "update" ? "bg-secondary-color" : "bg-blue-middle"} text-base md:text-lg hover:bg-secondary-color rounded-t-sm`}>Edit Profile</Link>
-      <Link to="/profile/password" onClick={() => setActive("password")} className={`min-w-fit max-w-[350px] w-full flex items-center justify-center px-4 py-2.5 ${active === "password" ? "bg-secondary-color" : "bg-blue-middle"} text-base md:text-lg hover:bg-secondary-color rounded-t-sm`}>Change Password</Link>
-      <Link to="/profile/twofactor" onClick={() => setActive("twofactor")} className={`min-w-fit max-w-[350px] w-full flex items-center justify-center px-4 py-2.5 ${active === "twofactor" ? "bg-secondary-color" : "bg-blue-middle"} text-base md:text-lg hover:bg-secondary-color rounded-t-sm`}>2-FA Authentication</Link>
-      <Link to="/profile/account" onClick={() => setActive("account")} className={`min-w-fit max-w-[350px] w-full flex items-center justify-center px-4 py-2.5 ${active === "account" ? "bg-secondary-color" : "bg-blue-middle"} text-base md:text-lg hover:bg-secondary-color rounded-t-sm`}>Account Settings</Link>
-    </nav>
+    <motion.nav
+      className="flex items-center gap-2 border-b border-gray-500 w-full overflow-x-auto px-2 md:p-0"
+      variants={navVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {navbarLinks.map((tab) => (
+        <motion.div
+          key={tab.id}
+          variants={itemVariants}
+          whileHover="hover"
+          whileTap="tap"
+          transition={{ type: "spring", stiffness: 300 }}
+          className="flex-1"
+        >
+          <Link
+            to={tab.path}
+            onClick={() => setActive(tab.id)}
+            className={`min-w-fit max-w-[350px] w-full flex items-center justify-center px-[10px] py-[15px] text-base whitespace-nowrap md:text-lg rounded-t-sm ${
+              active === tab.id
+                ? "bg-secondary-color"
+                : "bg-blue-middle hover:bg-secondary-color/80"
+            } transition-colors duration-200`}
+          >
+            {tab.text}
+          </Link>
+        </motion.div>
+      ))}
+    </motion.nav>
   );
 };
 

@@ -31,15 +31,17 @@ const Login = () => {
 
 	useEffect(() => {
 		if (formData) {
-			dispatch(loginRequest());
-			dispatch(
-				loginSuccess({
-					user: { identifer: formData.identifier },
-				})
-			)
-			toast.success("Login successful");
-			navigate("/", { replace: true });
-		}
+      // When Backend Is Ready Make This =>
+      // dispatch(actLogin(formData));
+      dispatch(loginRequest());
+      dispatch(
+        loginSuccess({
+          user: { identifer: formData.identifier },
+        })
+      );
+      toast.success("Login successful");
+      navigate("/", { replace: true });
+    }
 	}, [dispatch, formData, navigate]);
 
 	const submitForm: SubmitHandler<TLoginForm> = (data) => {

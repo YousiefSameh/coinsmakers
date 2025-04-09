@@ -30,14 +30,16 @@ const Register = () => {
 
 	useEffect(() => {
 		if (formData) {
-			dispatch(loginRequest());
-			dispatch(
-				loginSuccess({
-					user: { username: formData.username, email: formData.email },
-				})
-			);
-			navigate("/", { replace: true });
-		}
+      // When Backend Is Ready Make This =>
+      // dispatch(actRegister(formData));
+      dispatch(loginRequest());
+      dispatch(
+        loginSuccess({
+          user: { username: formData.username, email: formData.email },
+        })
+      );
+      navigate("/", { replace: true });
+    }
 	}, [dispatch, formData, navigate]);
 
 	const submitForm: SubmitHandler<TRegisterForm> = (data) => {

@@ -18,114 +18,158 @@ const Register = lazy(() => import("@pages/Register"));
 const Login = lazy(() => import("@pages/Login"));
 const Ranking = lazy(() => import("@pages/Ranking"));
 const About = lazy(() => import("@pages/Profile/About"));
+const Update = lazy(() => import("@pages/Profile/Update"));
+const ChangePassword = lazy(() => import("@pages/Profile/ChangePassword"));
+const TwoFactor = lazy(() => import("@pages/Profile/TwoFactor"));
+const AccountSettings = lazy(() => import("@pages/Profile/AccountSettings"));
 
 const router = createBrowserRouter([
-	{
-		path: "/",
-		element: (
-			<Suspense fallback={<Loading />}>
-				<MainTemplate />
-			</Suspense>
-		),
-		children: [
-			{
-				index: true,
-				element: (
-					<PageSuspenseFallback>
-						<ProtectedRoute>
-							<Earn />
-						</ProtectedRoute>
-					</PageSuspenseFallback>
-				),
-			},
-			{
-				path: "cashout",
-				element: (
-					<PageSuspenseFallback>
-						<ProtectedRoute>
-							<Cashout />
-						</ProtectedRoute>
-					</PageSuspenseFallback>
-				),
-			},
-			{
-				path: "cashout/confirm",
-				element: (
-					<PageSuspenseFallback>
-						<ProtectedRoute>
-							<Checkout />
-						</ProtectedRoute>
-					</PageSuspenseFallback>
-				),
-			},
-			{
-				path: "cashout/history",
-				element: (
-					<PageSuspenseFallback>
-						<ProtectedRoute>
-							<CashoutHistory />
-						</ProtectedRoute>
-					</PageSuspenseFallback>
-				),
-			},
-			{
-				path: "register",
-				element: (
-					<PageSuspenseFallback>
-						<ProtectedRoute restrictedForAuthenticated>
-							<Register />
-						</ProtectedRoute>
-					</PageSuspenseFallback>
-				),
-			},
-			{
-				path: "login",
-				element: (
-					<PageSuspenseFallback>
-						<ProtectedRoute restrictedForAuthenticated>
-							<Login />
-						</ProtectedRoute>
-					</PageSuspenseFallback>
-				),
-			},
-			{
-				path: "ranking",
-				element: (
-					<PageSuspenseFallback>
-						<ProtectedRoute>
-							<Ranking />
-						</ProtectedRoute>
-					</PageSuspenseFallback>
-				),
-			},
-			{
-				path: "profile",
-				element: (
-					<PageSuspenseFallback>
-						<ProtectedRoute>
-							<ProfileTemplate />
-						</ProtectedRoute>
-					</PageSuspenseFallback>
-				),
-				children: [
-					{
-						index: true,
-						element: (
-							<PageSuspenseFallback>
-								<ProtectedRoute>
-									<About />
-								</ProtectedRoute>
-							</PageSuspenseFallback>
-						),
-					},
-				],
-			},
-		],
-	},
+  {
+    path: "/",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <MainTemplate />
+      </Suspense>
+    ),
+    children: [
+      {
+        index: true,
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute>
+              <Earn />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: "cashout",
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute>
+              <Cashout />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: "cashout/confirm",
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: "cashout/history",
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute>
+              <CashoutHistory />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: "register",
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute restrictedForAuthenticated>
+              <Register />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: "login",
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute restrictedForAuthenticated>
+              <Login />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: "ranking",
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute>
+              <Ranking />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute>
+              <ProfileTemplate />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+        children: [
+          {
+            index: true,
+            element: (
+              <PageSuspenseFallback>
+                <ProtectedRoute>
+                  <About />
+                </ProtectedRoute>
+              </PageSuspenseFallback>
+            ),
+          },
+          {
+            path: "update",
+            element: (
+              <PageSuspenseFallback>
+                <ProtectedRoute>
+                  <Update />
+                </ProtectedRoute>
+              </PageSuspenseFallback>
+            ),
+          },
+          {
+            path: "password",
+            element: (
+              <PageSuspenseFallback>
+                <ProtectedRoute>
+                  <ChangePassword />
+                </ProtectedRoute>
+              </PageSuspenseFallback>
+            ),
+          },
+          {
+            path: "twofactor",
+            element: (
+              <PageSuspenseFallback>
+                <ProtectedRoute>
+                  <TwoFactor />
+                </ProtectedRoute>
+              </PageSuspenseFallback>
+            ),
+          },
+          {
+            path: "account",
+            element: (
+              <PageSuspenseFallback>
+                <ProtectedRoute>
+                  <AccountSettings />
+                </ProtectedRoute>
+              </PageSuspenseFallback>
+            ),
+          },
+        ],
+      },
+    ],
+  },
 ]);
 
 const AppRouter = () => {
-	return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 };
 
 export default AppRouter;

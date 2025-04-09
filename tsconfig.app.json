@@ -30,6 +30,7 @@
       "@styles/*": ["src/styles/*"],
       "@templates/*": ["src/templates/*"],
       "@validations/*": ["src/validations/*"],
+      "@utils/*": ["src/utils/*"],
     },
 
     /* Linting */
