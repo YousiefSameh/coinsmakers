@@ -7,159 +7,220 @@ import { MdArrowRight } from "react-icons/md";
 import { RiMedalLine } from "react-icons/ri";
 import { ImCancelCircle } from "react-icons/im";
 import { Link } from "react-router-dom";
+import { MdLocalOffer } from "react-icons/md";
+import ReactCountryFlag from "react-country-flag";
+import { useCountry } from "../../hooks/useCountry";
 
 const Sidebar = () => {
-	const [showMenu, setShowMenu] = useState(false);
-	const [showSidebar, setShowSidebar] = useState(false);
-	const [activeDock, setActiveDock] = useState("earn");
+  const { country, loading } = useCountry();
+  const [showMenu, setShowMenu] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [activeDock, setActiveDock] = useState("earn");
 
-	return (
-		<>
-			<aside
-				className={`${
-					showSidebar ? "block" : "hidden"
-				} md:block w-[210px] md:w-[240px] z-20 bg-[#272B3A] max-h-screen h-full fixed top-0 left-0 overflow-y-auto py-4 shadow-lg border-r border-blue-light`}
-				aria-label="Sidebar Navigation"
-			>
-				<nav className="p-2 mt-[45px] md:mt-[70px]" role="navigation">
-					<p className="uppercase text-neutral-400 text-sm mb-3 p-2 pb-0">
-						Main
-					</p>
-					<ul className="space-y-2">
-						<li
-							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
-							aria-label="Home"
-						>
-							<Link to="/" className="flex items-center gap-5 w-full">
-								<div className="icon bg-[#1D202C] p-2 rounded-md">
-									<FaHome className="text-2xl" />
-								</div>
-								<p className="text-lg">Home</p>
-							</Link>
-						</li>
-						<li>
-							<button
-								onClick={() => setShowMenu(!showMenu)}
-								className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer w-full text-left"
-								aria-expanded={showMenu}
-								aria-controls="offers-menu"
-							>
-								<div className="icon bg-[#1D202C] p-2 rounded-md">
-									<TbCoins className="text-2xl" />
-								</div>
-								<p>Offers</p>
-								<MdArrowRight
-									className={`ml-8 md:ml-10 text-2xl transition-transform ${
-										showMenu ? "rotate-90" : ""
-									}`}
-								/>
-							</button>
-							<ul
-								id="offers-menu"
-								className={`${
-									showMenu ? "flex" : "hidden"
-								} flex-col py-2 px-6 gap-5`}
-								role="menu"
-							>
-								<li role="menuitem">All Offers</li>
-								<li role="menuitem">(Games 11)</li>
-								<li role="menuitem">(Install 0)</li>
-								<li role="menuitem">(Sweepstake 0)</li>
-								<li role="menuitem">(Free 97)</li>
-							</ul>
-						</li>
-						<li
-							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
-							aria-label="Cashout"
-						>
-							<Link to="/cashout" className="flex items-center gap-5 w-full">
-								<div className="icon bg-[#1D202C] p-2 rounded-md">
-									<IoCashOutline className="text-2xl" />
-								</div>
-								<p className="text-lg">Cashout</p>
-							</Link>
-						</li>
-						<li
-							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
-							aria-label="Ranking"
-						>
-							<Link to="/ranking" className="flex items-center gap-5 w-full">
-								<div className="icon bg-[#1D202C] p-2 rounded-md">
-									<PiRanking className="text-2xl" />
-								</div>
-								<p className="text-lg">Ranking</p>
-							</Link>
-						</li>
-						<li
-							className="flex items-center gap-5 transition-colors hover:bg-[#1D202C] p-2 rounded-md cursor-pointer"
-							aria-label="Rewards"
-						>
-							<Link to="/rewards" className="flex items-center gap-5 w-full">
-								<div className="icon bg-[#1D202C] p-2 rounded-md">
-									<RiMedalLine className="text-2xl" />
-								</div>
-								<p className="text-lg">Rewards</p>
-							</Link>
-						</li>
-					</ul>
-				</nav>
-			</aside>
-			<div
-				className="dock dock-lg flex md:hidden z-30"
-				role="navigation"
-				aria-label="Mobile Dock"
-			>
-				<button
-					onClick={() => setShowSidebar(!showSidebar)}
-					aria-label={showSidebar ? "Close Sidebar" : "Open Sidebar"}
-				>
-					<FaBars className={showSidebar ? "hidden" : "block size-[1.6rem]"} />
-					<ImCancelCircle
-						className={showSidebar ? "block size-[1.6rem]" : "hidden"}
-					/>
-				</button>
+  return (
+    <>
+      <aside
+        className={`${
+          showSidebar ? "block" : "hidden"
+        } md:block w-[210px] md:w-[240px] bg-[#272B3A] z-20 max-h-screen h-full fixed top-0 left-0 overflow-y-auto py-4 shadow-lg border-r border-base-300`}
+        aria-label="Sidebar Navigation"
+      >
+        <nav className="p-2 mt-[45px] md:mt-[70px]" role="navigation">
+          <div className="flex justify-between items-center mb-3 p-2">
+            <p className="uppercase text-base-content/70 text-sm">Main</p>
+          </div>
+          <ul className="space-y-2">
+            <li
+              className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
+              aria-label="Home"
+            >
+              <Link to="/" className="flex items-center gap-5 w-full">
+                <div className="icon bg-base-300 p-2 rounded-md">
+                  <FaHome className="text-2xl text-base-content" />
+                </div>
+                <p className="text-lg text-base-content">Home</p>
+              </Link>
+            </li>
+            <li>
+              <button
+                onClick={() => setShowMenu(!showMenu)}
+                className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer w-full text-left"
+                aria-expanded={showMenu}
+                aria-controls="offers-menu"
+              >
+                <div className="icon bg-base-300 p-2 rounded-md">
+                  <TbCoins className="text-2xl text-base-content" />
+                </div>
+                <p className="text-base-content">Offers</p>
+                <MdArrowRight
+                  className={`ml-8 md:ml-10 text-2xl transition-transform text-base-content ${
+                    showMenu ? "rotate-90" : ""
+                  }`}
+                />
+              </button>
+              <ul
+                id="offers-menu"
+                className={`${
+                  showMenu ? "flex" : "hidden"
+                } flex-col py-2 px-6 gap-2`}
+                role="menu"
+              >
+                <li
+                  role="menuitem"
+                  className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
+                >
+                  All Offers
+                </li>
+                <li
+                  role="menuitem"
+                  className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
+                >
+                  (Games 11)
+                </li>
+                <li
+                  role="menuitem"
+                  className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
+                >
+                  (Install 0)
+                </li>
+                <li
+                  role="menuitem"
+                  className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
+                >
+                  (Sweepstake 0)
+                </li>
+                <li
+                  role="menuitem"
+                  className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
+                >
+                  (Free 97)
+                </li>
+              </ul>
+            </li>
+            <li
+              className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
+              aria-label="Cashout"
+            >
+              <Link to="/cashout" className="flex items-center gap-5 w-full">
+                <div className="icon bg-base-300 p-2 rounded-md">
+                  <IoCashOutline className="text-2xl text-base-content" />
+                </div>
+                <p className="text-lg text-base-content">Cashout</p>
+              </Link>
+            </li>
+            <li
+              className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
+              aria-label="Ranking"
+            >
+              <Link to="/ranking" className="flex items-center gap-5 w-full">
+                <div className="icon bg-base-300 p-2 rounded-md">
+                  <PiRanking className="text-2xl text-base-content" />
+                </div>
+                <p className="text-lg text-base-content">Ranking</p>
+              </Link>
+            </li>
+            <li
+              className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
+              aria-label="Rewards"
+            >
+              <Link to="/rewards" className="flex items-center gap-5 w-full">
+                <div className="icon bg-base-300 p-2 rounded-md">
+                  <RiMedalLine className="text-2xl text-base-content" />
+                </div>
+                <p className="text-lg text-base-content">Rewards</p>
+              </Link>
+            </li>
+            <li
+              className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
+              aria-label="Coupon Codes"
+            >
+              <Link to="/coupons" className="flex items-center gap-5 w-full">
+                <div className="icon bg-base-300 p-2 rounded-md">
+                  <MdLocalOffer className="text-2xl text-base-content" />
+                </div>
+                <p className="text-lg text-base-content">Coupon Code</p>
+              </Link>
+            </li>
+          </ul>
+          <div className="mt-6 p-2">
+            <span className="flex items-center gap-2 text-base-content/70">
+              Country:{" "}
+              {loading ? (
+                "Loading..."
+              ) : (
+                <>
+                  <ReactCountryFlag countryCode={country} svg /> {country}
+                </>
+              )}
+            </span>
+          </div>
+        </nav>
+      </aside>
+      <div
+        className="dock dock-lg flex md:hidden z-30 bg-base-200"
+        role="navigation"
+        aria-label="Mobile Dock"
+      >
+        <button
+          onClick={() => setShowSidebar(!showSidebar)}
+          aria-label={showSidebar ? "Close Sidebar" : "Open Sidebar"}
+          className="text-base-content"
+        >
+          <FaBars className={showSidebar ? "hidden" : "block size-[1.6rem]"} />
+          <ImCancelCircle
+            className={showSidebar ? "block size-[1.6rem]" : "hidden"}
+          />
+        </button>
 
-				<Link
-					to="/cashout"
-					onClick={() => setActiveDock("cashout")}
-					className={activeDock === "cashout" ? "bg-secondary-color -translate-y-2" : ""}
-					aria-label="Cashout"
-				>
-					<IoCashOutline className="size-[1.2rem]" />
-					<span className="dock-label">Cashout</span>
-				</Link>
+        <Link
+          to="/cashout"
+          onClick={() => setActiveDock("cashout")}
+          className={`text-base-content ${
+            activeDock === "cashout" ? "bg-primary -translate-y-2" : ""
+          }`}
+          aria-label="Cashout"
+        >
+          <IoCashOutline className="size-[1.2rem]" />
+          <span className="dock-label">Cashout</span>
+        </Link>
 
-				<Link
-					to="/earn"
-					onClick={() => setActiveDock("earn")}
-					className={activeDock === "earn" ? "bg-secondary-color -translate-y-2" : ""}
-					aria-label="Earn"
-				>
-					<TbCoins className="size-[1.2rem]" />
-					<span className="dock-label">Earn</span>
-				</Link>
+        <Link
+          to="/earn"
+          onClick={() => setActiveDock("earn")}
+          className={`text-base-content ${
+            activeDock === "earn" ? "bg-primary -translate-y-2" : ""
+          }`}
+          aria-label="Earn"
+        >
+          <TbCoins className="size-[1.2rem]" />
+          <span className="dock-label">Earn</span>
+        </Link>
 
-				<Link
-					to="/rewards"
-					onClick={() => setActiveDock("rewards")}
-					className={activeDock === "rewards" ? "bg-secondary-color -translate-y-2" : ""}
-					aria-label="Rewards"
-				>
-					<RiMedalLine className="size-[1.2rem]" />
-					<span className="dock-label">Rewards</span>
-				</Link>
+        <Link
+          to="/rewards"
+          onClick={() => setActiveDock("rewards")}
+          className={`text-base-content ${
+            activeDock === "rewards" ? "bg-primary -translate-y-2" : ""
+          }`}
+          aria-label="Rewards"
+        >
+          <RiMedalLine className="size-[1.2rem]" />
+          <span className="dock-label">Rewards</span>
+        </Link>
 
-				<button
-					onClick={() => setActiveDock("chat")}
-					className={activeDock === "chat" ? "bg-secondary-color -translate-y-2" : ""}
-					aria-label="Chat"
-				>
-					<IoChatboxEllipsesOutline className="size-[1.2rem]" />
-					<span className="dock-label">Chat</span>
-				</button>
-			</div>
-		</>
-	);
+        <button
+          onClick={() => setActiveDock("chat")}
+          className={`text-base-content ${
+            activeDock === "chat" ? "bg-primary -translate-y-2" : ""
+          }`}
+          aria-label="Chat"
+        >
+          <IoChatboxEllipsesOutline className="size-[1.2rem]" />
+          <span className="dock-label">Chat</span>
+        </button>
+      </div>
+    </>
+  );
 };
 
 export default Sidebar;

@@ -139,14 +139,21 @@ const AccountSettings = () => {
         {/* Public Profile Toggle */}
         <motion.div
           variants={itemVariants}
-          className="flex items-center space-x-3"
+          className="flex items-center justify-between p-4 bg-[#2a2e3f] rounded-lg"
         >
-          <input
-            type="checkbox"
-            {...register("isPublic")}
-            className="h-4 w-4 rounded border-gray-300 text-secondary-color focus:ring-secondary-color"
-          />
-          <label className="text-sm font-medium">Make my profile public</label>
+          <div className="flex flex-col">
+            <label className="text-base-content font-medium">Public Profile</label>
+            <span className="text-sm text-base-content/60">Others can see your profile</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-base-content/60">ON</span>
+            <input
+              type="checkbox"
+              {...register("isPublic")}
+              className="toggle toggle-primary"
+            />
+            <span className="text-xs text-base-content/60">OFF</span>
+          </div>
         </motion.div>
 
         {/* Save Button */}

@@ -12,23 +12,30 @@ import {
 import storage from "redux-persist/lib/storage";
 import cashout from './cashout/CashoutSlice';
 import auth from "./auth/AuthSlice";
+import coupon from "./coupon/CouponSlice";
 
 const rootPersistConfig = {
   key: "root",
   storage,
-  whitelist: ["cashout", "auth"],
+  whitelist: ["auth", "coupon"],
 };
 
 const authPersistConfig = {
   key: "auth",
   storage,
-  // whiteList: ["user", "accessToken"],
   whiteList: ["user", "accessToken"],
+};
+
+const couponPersistConfig = {
+  key: "coupon",
+  storage,
+  whitelist: ["coupons"],
 };
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, auth),
   cashout,
+  coupon: persistReducer(couponPersistConfig, coupon),
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

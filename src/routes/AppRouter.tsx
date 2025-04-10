@@ -22,6 +22,7 @@ const Update = lazy(() => import("@pages/Profile/Update"));
 const ChangePassword = lazy(() => import("@pages/Profile/ChangePassword"));
 const TwoFactor = lazy(() => import("@pages/Profile/TwoFactor"));
 const AccountSettings = lazy(() => import("@pages/Profile/AccountSettings"));
+const Coupons = lazy(() => import("@pages/Coupons"));
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,16 @@ const router = createBrowserRouter([
           <PageSuspenseFallback>
             <ProtectedRoute>
               <Ranking />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: "coupons",
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute>
+              <Coupons />
             </ProtectedRoute>
           </PageSuspenseFallback>
         ),

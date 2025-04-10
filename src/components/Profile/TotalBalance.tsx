@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useAppSelector } from "@store/hooks";
 import { useEffect, useState } from "react";
 import SpecialHeading from "@components/shared/SpecialHeading";
-import { MdAccountBalanceWallet } from "react-icons/md";
+import { MdAccountBalanceWallet, MdCancel } from "react-icons/md";
 import { PiCoinVerticalFill } from "react-icons/pi";
 
 // Animation variants
@@ -56,9 +56,15 @@ const TotalBalance = () => {
       value: `${cashoutTotal}.00`,
     },
     {
-      bg: "bg-secondary-color",
+      bg: "bg-yellow-600",
       icon: <FaClock />,
       title: "Pending Offers",
+      value: "0.00",
+    },
+    {
+      bg: "bg-red-600",
+      icon: <MdCancel />,
+      title: "Charge Back Offer",
       value: "0.00",
     },
   ];
@@ -90,7 +96,7 @@ const TotalBalance = () => {
       <SpecialHeading title="Balance Now" icon={<MdAccountBalanceWallet />} />
 
       <motion.div
-        className="content mt-4 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6"
+        className="content mt-4 grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
