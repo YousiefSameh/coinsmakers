@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useCountry } from "@hooks/useCountry";
-import { useAppDispatch } from "@store/hooks";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 import DailyTasksSidebar from "../DailyTasks/DailyTasksSidebar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { openSidebar as openDailyTasks } from "@store/dailyTasks/dailyTasksSlice";
 import { toggleChat } from "@store/chat/chatSlice";
 import { FaBars, FaHome } from "react-icons/fa";
@@ -16,11 +16,18 @@ import { MdLocalOffer } from "react-icons/md";
 import ReactCountryFlag from "react-country-flag";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { country, loading } = useCountry();
   const [showMenu, setShowMenu] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [activeDock, setActiveDock] = useState("earn");
+  const orders = useAppSelector((state) => state.orders.items);
+
+  const handleNumberOfOrderCategories = (category: string) => {
+    if (category === 'all') return orders.length;
+    return orders.filter(order => order.category === category).length;
+  }
 
   const handleRewardsClick = () => {
     dispatch(openDailyTasks());
@@ -75,34 +82,39 @@ const Sidebar = () => {
                 role="menu"
               >
                 <li
+                  onClick={() => navigate("/orders/all")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
-                  All Offers
+                  All Offers ({handleNumberOfOrderCategories('all')})
                 </li>
                 <li
+                  onClick={() => navigate("/orders/games")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
-                  (Games 11)
+                  (Games {handleNumberOfOrderCategories('games')})
                 </li>
                 <li
+                  onClick={() => navigate("/orders/install")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
-                  (Install 0)
+                  (Install {handleNumberOfOrderCategories('install')})
                 </li>
                 <li
+                  onClick={() => navigate("/orders/sweepstake")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
-                  (Sweepstake 0)
+                  (Sweepstake {handleNumberOfOrderCategories('sweepstake')})
                 </li>
                 <li
+                  onClick={() => navigate("/orders/free")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
-                  (Free 97)
+                  (Free {handleNumberOfOrderCategories('free')})
                 </li>
               </ul>
             </li>
