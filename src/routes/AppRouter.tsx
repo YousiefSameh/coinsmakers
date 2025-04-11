@@ -23,6 +23,7 @@ const ChangePassword = lazy(() => import("@pages/Profile/ChangePassword"));
 const TwoFactor = lazy(() => import("@pages/Profile/TwoFactor"));
 const AccountSettings = lazy(() => import("@pages/Profile/AccountSettings"));
 const Coupons = lazy(() => import("@pages/Coupons"));
+const RewardsHistory = lazy(() => import("@pages/RewardsHistory"));
 
 const router = createBrowserRouter([
   {
@@ -109,6 +110,16 @@ const router = createBrowserRouter([
           <PageSuspenseFallback>
             <ProtectedRoute>
               <Coupons />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: "rewards-history",
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute>
+              <RewardsHistory />
             </ProtectedRoute>
           </PageSuspenseFallback>
         ),
