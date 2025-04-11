@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
-import Logo from "@assets/logo.png";
-import LogoSM from "@assets/logoSM.png";
+import Logo from "@assets/Logo.png";
+import LogoSM from "@assets/LogoSM.png";
 import Avatar from "@assets/Avatar.png";
 import ChatPopup from "../Chat/ChatPopup";
 import { toggleChat } from "@store/chat/chatSlice";
