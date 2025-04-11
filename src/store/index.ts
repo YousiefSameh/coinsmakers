@@ -15,6 +15,7 @@ import auth from "./auth/AuthSlice";
 import coupon from "./coupon/CouponSlice";
 import dailytasks from "./dailyTasks/dailyTasksSlice";
 import chat from "./chat/chatSlice";
+import ordersReducer from './orders/ordersSlice';
 
 const rootPersistConfig = {
   key: "root",
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
   dailytasks,
   chat,
   coupon: persistReducer(couponPersistConfig, coupon),
+  orders: ordersReducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

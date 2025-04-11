@@ -25,6 +25,7 @@ const AccountSettings = lazy(() => import("@pages/Profile/AccountSettings"));
 const Coupons = lazy(() => import("@pages/Coupons"));
 const RewardsHistory = lazy(() => import("@pages/RewardsHistory"));
 const Referral = lazy(() => import("@pages/Referral"));
+const Orders = lazy(() => import("@pages/Orders"));
 
 const router = createBrowserRouter([
   {
@@ -131,6 +132,16 @@ const router = createBrowserRouter([
           <PageSuspenseFallback>
             <ProtectedRoute>
               <Referral />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: "orders/:category",
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute>
+              <Orders />
             </ProtectedRoute>
           </PageSuspenseFallback>
         ),

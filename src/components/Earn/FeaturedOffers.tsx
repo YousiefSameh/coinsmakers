@@ -22,7 +22,15 @@ const FeaturedOffers = () => {
 				onMouseLeave={handleMouseUp}
 			>
 				{Array.from({ length: 12 }, (_, index) => (
-					<OfferCard key={index} index={index} />
+					<OfferCard 
+						key={index} 
+						index={index}
+						title="Alibaba.com - B2B marketplace"
+						provider="Farly"
+						price={200.00}
+						image="https://www.farly.io/d/3504/76379/icon/?sub=3504&gaid=[GAID]"
+						platform="android"
+					/>
 				))}
 			</div>
 			<dialog id="my_modal_3" className="modal">
