@@ -5,7 +5,7 @@ import { toggleChat, addMessage } from "@store/chat/chatSlice";
 import { FaTimes, FaPaperPlane, FaCoins } from 'react-icons/fa';
 import { IoChatboxEllipsesOutline } from 'react-icons/io5';
 
-const ChatPopup: React.FC = () => {
+const ChatSidebar: React.FC = () => {
   const dispatch = useAppDispatch();
   const { isOpen, messages, onlineUsers } = useAppSelector((state) => state.chat);
   const [inputValue, setInputValue] = useState('');
@@ -19,7 +19,9 @@ const ChatPopup: React.FC = () => {
     if (isOpen) {
       scrollToBottom();
       // Prevent body scroll when chat is open on mobile
-      document.body.style.overflow = 'hidden';
+      if (window.innerWidth < 768) {
+        document.body.style.overflow = 'hidden';
+      }
     } else {
       document.body.style.overflow = 'auto';
     }
@@ -49,14 +51,14 @@ const ChatPopup: React.FC = () => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, x: '100%' }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: '100%' }}
           transition={{ type: 'spring', damping: 25 }}
-          className="fixed md:bottom-20 bottom-0 md:right-4 right-0 w-full md:w-[650px] bg-base-200 md:rounded-lg shadow-xl overflow-hidden z-[60] md:h-auto h-[calc(100vh-4rem)]"
+          className="fixed top-0 right-0 w-full md:w-[400px] bg-base-200 shadow-xl z-[60] h-screen flex flex-col"
         >
           {/* Header */}
-          <div className="bg-base-300 p-4">
+          <div className="bg-base-300 p-4 shrink-0">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <IoChatboxEllipsesOutline className="text-2xl text-secondary-color" />
@@ -75,7 +77,7 @@ const ChatPopup: React.FC = () => {
           </div>
 
           {/* Messages */}
-          <div className="h-[400px] md:h-[500px] overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.map((message) => (
               <motion.div
                 key={message.id}
@@ -89,9 +91,9 @@ const ChatPopup: React.FC = () => {
                   {message.user.avatar}
                 </div>
                 <div
-                  className={`group max-w-[75%] md:max-w-[60%] ${
+                  className={`group max-w-[75%] ${
                     message.user.id === 'current-user'
-                      ? 'bg-primary text-primary-content'
+                      ? 'bg-secondary-color text-white'
                       : 'bg-base-300'
                   } p-3 rounded-lg break-words`}
                 >
@@ -115,7 +117,7 @@ const ChatPopup: React.FC = () => {
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSubmit} className="p-4 bg-base-300 sticky bottom-0">
+          <form onSubmit={handleSubmit} className="p-4 bg-base-300 shrink-0">
             <div className="join w-full">
               <input
                 type="text"
@@ -126,7 +128,7 @@ const ChatPopup: React.FC = () => {
               />
               <button
                 type="submit"
-                className="btn btn-primary join-item"
+                className="btn bg-secondary-color join-item"
                 disabled={!inputValue.trim()}
               >
                 <FaPaperPlane />
@@ -139,4 +141,4 @@ const ChatPopup: React.FC = () => {
   );
 };
 
-export default ChatPopup;
+export default ChatSidebar;

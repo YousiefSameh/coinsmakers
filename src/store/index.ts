@@ -15,6 +15,7 @@ import auth from "./auth/AuthSlice";
 import coupon from "./coupon/CouponSlice";
 import dailytasks from "./dailyTasks/dailyTasksSlice";
 import chat from "./chat/chatSlice";
+import notifications from './notifications/notificationsSlice';
 import ordersReducer from './orders/ordersSlice';
 
 const rootPersistConfig = {
@@ -42,6 +43,7 @@ const rootReducer = combineReducers({
   chat,
   coupon: persistReducer(couponPersistConfig, coupon),
   orders: ordersReducer,
+  notifications,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

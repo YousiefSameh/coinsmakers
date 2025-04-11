@@ -1,17 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import Logo from "@assets/Logo.png";
 import LogoSM from "@assets/LogoSM.png";
 import Avatar from "@assets/Avatar.png";
-import ChatPopup from "../Chat/ChatPopup";
+import ChatSidebar from "../Chat/ChatSidebar";
+import NotificationSidebar from "../Notifications/NotificationSidebar";
 import { toggleChat } from "@store/chat/chatSlice";
+import { toggleNotifications } from "@store/notifications/notificationsSlice";
 import { FaBell, FaHistory, FaShare, FaUser } from "react-icons/fa";
 import { FaCoins, FaRankingStar } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
 
 const Header = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
 
   return (
@@ -34,6 +37,18 @@ const Header = () => {
               >
                 <IoChatboxEllipsesOutline className="sm:text-base md:text-[28px]" />
               </button>
+              <button
+                onClick={() => dispatch(toggleNotifications())}
+                className="btn bg-transparent shadow-none border-none btn-ghost btn-circle"
+                aria-label="Notifications"
+              >
+                <div className="indicator">
+                  <FaBell className="sm:text-base md:text-[28px]" />
+                  <span className="badge badge-secondary badge-xs indicator-item">
+                    3
+                  </span>
+                </div>
+              </button>
               <button className="btn btn-sm md:btn-md border-none bg-transparent text-white !px-2 flex items-center gap-2">
                 <span className="text-sm md:text-lg text-yellow-400">
                   <FaCoins />
@@ -53,13 +68,13 @@ const Header = () => {
                   className="dropdown-content menu p-2 shadow-lg bg-base-100 rounded-box w-52 mt-4"
                 >
                   <li>
-                    <Link
-                      to="/profile"
+                    <button
                       className="flex items-center gap-4 p-3 hover:bg-base-200 rounded-lg transition-colors"
+                      onClick={() => navigate("/profile")}
                     >
                       <FaUser />
                       Profile
-                    </Link>
+                    </button>
                   </li>
                   <li>
                     <Link
@@ -96,14 +111,6 @@ const Header = () => {
                   </li>
                 </ul>
               </div>
-              <button
-                className="btn btn-sm md:btn-md border-none bg-transparent text-white !px-2 block"
-                aria-label="Notifications"
-              >
-                <span className="text-lg md:text-[28px]">
-                  <FaBell />
-                </span>
-              </button>
             </>
           ) : (
             <>
@@ -125,7 +132,8 @@ const Header = () => {
           )}
         </div>
       </header>
-      <ChatPopup />
+      <ChatSidebar />
+      <NotificationSidebar />
       <section
         className="titles mt-[75px] md:mt-[100px] z-10 flex items-center gap-4 px-4 pb-3 relative overflow-auto w-full"
         aria-label="User Titles"

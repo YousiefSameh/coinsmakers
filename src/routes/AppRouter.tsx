@@ -26,6 +26,7 @@ const Coupons = lazy(() => import("@pages/Coupons"));
 const RewardsHistory = lazy(() => import("@pages/RewardsHistory"));
 const Referral = lazy(() => import("@pages/Referral"));
 const Orders = lazy(() => import("@pages/Orders"));
+const Notifications = lazy(() => import("@pages/Notifications"));
 
 const router = createBrowserRouter([
   {
@@ -132,6 +133,16 @@ const router = createBrowserRouter([
           <PageSuspenseFallback>
             <ProtectedRoute>
               <Referral />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: "notifications",
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute>
+              <Notifications />
             </ProtectedRoute>
           </PageSuspenseFallback>
         ),

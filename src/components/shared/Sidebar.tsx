@@ -21,13 +21,12 @@ const Sidebar = () => {
   const { country, loading } = useCountry();
   const [showMenu, setShowMenu] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-  const [activeDock, setActiveDock] = useState("earn");
   const orders = useAppSelector((state) => state.orders.items);
 
   const handleNumberOfOrderCategories = (category: string) => {
-    if (category === 'all') return orders.length;
-    return orders.filter(order => order.category === category).length;
-  }
+    if (category === "all") return orders.length;
+    return orders.filter((order) => order.category === category).length;
+  };
 
   const handleRewardsClick = () => {
     dispatch(openDailyTasks());
@@ -86,35 +85,35 @@ const Sidebar = () => {
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
-                  All Offers ({handleNumberOfOrderCategories('all')})
+                  All Offers ({handleNumberOfOrderCategories("all")})
                 </li>
                 <li
                   onClick={() => navigate("/orders/games")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
-                  (Games {handleNumberOfOrderCategories('games')})
+                  (Games {handleNumberOfOrderCategories("games")})
                 </li>
                 <li
                   onClick={() => navigate("/orders/install")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
-                  (Install {handleNumberOfOrderCategories('install')})
+                  (Install {handleNumberOfOrderCategories("install")})
                 </li>
                 <li
                   onClick={() => navigate("/orders/sweepstake")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
-                  (Sweepstake {handleNumberOfOrderCategories('sweepstake')})
+                  (Sweepstake {handleNumberOfOrderCategories("sweepstake")})
                 </li>
                 <li
                   onClick={() => navigate("/orders/free")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
-                  (Free {handleNumberOfOrderCategories('free')})
+                  (Free {handleNumberOfOrderCategories("free")})
                 </li>
               </ul>
             </li>
@@ -198,10 +197,7 @@ const Sidebar = () => {
 
         <Link
           to="/cashout"
-          onClick={() => setActiveDock("cashout")}
-          className={`text-base-content ${
-            activeDock === "cashout" ? "bg-secondary-color -translate-y-2" : ""
-          }`}
+          className={`text-base-content`}
           aria-label="Cashout"
         >
           <IoCashOutline className="size-[1.2rem]" />
@@ -210,10 +206,7 @@ const Sidebar = () => {
 
         <Link
           to="/"
-          onClick={() => setActiveDock("earn")}
-          className={`text-base-content ${
-            activeDock === "earn" ? "bg-secondary-color -translate-y-2" : ""
-          }`}
+          className={`text-base-content bg-secondary-color`}
           aria-label="Earn"
         >
           <TbCoins className="size-[1.2rem]" />
@@ -221,13 +214,8 @@ const Sidebar = () => {
         </Link>
 
         <button
-          onClick={() => {
-            setActiveDock("rewards");
-            handleRewardsClick();
-          }}
-          className={`text-base-content ${
-            activeDock === "rewards" ? "bg-secondary-color -translate-y-2" : ""
-          }`}
+          onClick={() => handleRewardsClick()}
+          className={`text-base-content`}
           aria-label="Rewards"
         >
           <RiMedalLine className="size-[1.2rem]" />
@@ -235,13 +223,8 @@ const Sidebar = () => {
         </button>
 
         <button
-          onClick={() => {
-            setActiveDock("chat");
-            dispatch(toggleChat());
-          }}
-          className={`text-base-content ${
-            activeDock === "chat" ? "bg-secondary-color -translate-y-2" : ""
-          }`}
+          onClick={() => dispatch(toggleChat())}
+          className={`text-base-content`}
           aria-label="Chat"
         >
           <IoChatboxEllipsesOutline className="size-[1.2rem]" />
