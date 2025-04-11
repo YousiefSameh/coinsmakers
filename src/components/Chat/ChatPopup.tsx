@@ -18,7 +18,14 @@ const ChatPopup: React.FC = () => {
   useEffect(() => {
     if (isOpen) {
       scrollToBottom();
+      // Prevent body scroll when chat is open on mobile
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
     }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, [messages, isOpen]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -46,7 +53,7 @@ const ChatPopup: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ type: 'spring', damping: 25 }}
-          className="fixed bottom-20 right-4 w-[650px] bg-base-200 rounded-lg shadow-xl overflow-hidden z-50"
+          className="fixed md:bottom-20 bottom-0 md:right-4 right-0 w-full md:w-[650px] bg-base-200 md:rounded-lg shadow-xl overflow-hidden z-[60] md:h-auto h-[calc(100vh-4rem)]"
         >
           {/* Header */}
           <div className="bg-base-300 p-4">
@@ -68,7 +75,7 @@ const ChatPopup: React.FC = () => {
           </div>
 
           {/* Messages */}
-          <div className="h-[400px] overflow-y-auto p-4 space-y-4">
+          <div className="h-[400px] md:h-[500px] overflow-y-auto p-4 space-y-4">
             {messages.map((message) => (
               <motion.div
                 key={message.id}
@@ -78,17 +85,17 @@ const ChatPopup: React.FC = () => {
                   message.user.id === 'current-user' ? 'flex-row-reverse' : ''
                 }`}
               >
-                <div className="w-8 h-8 flex items-center justify-center text-xl rounded-full bg-base-300">
+                <div className="w-8 h-8 flex items-center justify-center text-xl rounded-full bg-base-300 shrink-0">
                   {message.user.avatar}
                 </div>
                 <div
-                  className={`group max-w-[75%] ${
+                  className={`group max-w-[75%] md:max-w-[60%] ${
                     message.user.id === 'current-user'
                       ? 'bg-primary text-primary-content'
                       : 'bg-base-300'
-                  } p-3 rounded-lg`}
+                  } p-3 rounded-lg break-words`}
                 >
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
                     <span className="font-bold text-sm">{message.user.name}</span>
                     {message.type === 'task_complete' && (
                       <div className="flex items-center gap-1 text-xs bg-success/20 text-success px-2 py-0.5 rounded-full">
@@ -97,7 +104,7 @@ const ChatPopup: React.FC = () => {
                       </div>
                     )}
                   </div>
-                  <p className="text-sm">{message.text}</p>
+                  <p className="text-sm break-words">{message.text}</p>
                   <span className="text-xs opacity-70 mt-1 block">
                     {new Date(message.timestamp).toLocaleTimeString()}
                   </span>
@@ -108,7 +115,7 @@ const ChatPopup: React.FC = () => {
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSubmit} className="p-4 bg-base-300">
+          <form onSubmit={handleSubmit} className="p-4 bg-base-300 sticky bottom-0">
             <div className="join w-full">
               <input
                 type="text"

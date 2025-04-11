@@ -1,4 +1,10 @@
 import { useState } from "react";
+import { useCountry } from "@hooks/useCountry";
+import { useAppDispatch } from "@store/hooks";
+import DailyTasksSidebar from "../DailyTasks/DailyTasksSidebar";
+import { Link } from "react-router-dom";
+import { openSidebar as openDailyTasks } from "@store/dailyTasks/dailyTasksSlice";
+import { toggleChat } from "@store/chat/chatSlice";
 import { FaBars, FaHome } from "react-icons/fa";
 import { IoCashOutline, IoChatboxEllipsesOutline } from "react-icons/io5";
 import { PiRanking } from "react-icons/pi";
@@ -6,16 +12,11 @@ import { TbCoins } from "react-icons/tb";
 import { MdArrowRight } from "react-icons/md";
 import { RiMedalLine } from "react-icons/ri";
 import { ImCancelCircle } from "react-icons/im";
-import { Link } from "react-router-dom";
 import { MdLocalOffer } from "react-icons/md";
 import ReactCountryFlag from "react-country-flag";
-import { useCountry } from "@hooks/useCountry";
-import { useDispatch } from "react-redux";
-import { openSidebar as openDailyTasks } from "@store/dailyTasks/dailyTasksSlice";
-import DailyTasksSidebar from "../DailyTasks/DailyTasksSidebar";
 
 const Sidebar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { country, loading } = useCountry();
   const [showMenu, setShowMenu] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -222,7 +223,10 @@ const Sidebar = () => {
         </button>
 
         <button
-          onClick={() => setActiveDock("chat")}
+          onClick={() => {
+            setActiveDock("chat");
+            dispatch(toggleChat());
+          }}
           className={`text-base-content ${
             activeDock === "chat" ? "bg-secondary-color -translate-y-2" : ""
           }`}

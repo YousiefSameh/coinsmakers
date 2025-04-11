@@ -23,7 +23,7 @@ const Shop = () => {
 				<div className="right">
 					<Link
 						to="/cashout/history"
-						className="btn btn-lg btn-outline btn-success border-secondary-color text-secondary-color hover:bg-secondary-color hover:text-white"
+						className="btn btn-lg whitespace-nowrap text-base btn-outline btn-success border-secondary-color text-secondary-color hover:bg-secondary-color hover:text-white"
 					>
 						View History
 					</Link>
