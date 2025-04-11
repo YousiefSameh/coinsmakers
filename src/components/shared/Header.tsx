@@ -32,14 +32,14 @@ const Header = () => {
             <>
               <button
                 onClick={() => dispatch(toggleChat())}
-                className="btn btn-accent text-white !px-2 hidden md:block"
+                className="btn btn-accent text-white !px-2 hidden md:block order-1"
                 aria-label="Open Chat"
               >
                 <IoChatboxEllipsesOutline className="sm:text-base md:text-[28px]" />
               </button>
               <button
                 onClick={() => dispatch(toggleNotifications())}
-                className="btn bg-transparent shadow-none border-none btn-ghost btn-circle"
+                className="btn bg-transparent shadow-none border-none btn-ghost btn-circle md:order-2 order-last"
                 aria-label="Notifications"
               >
                 <div className="indicator">
@@ -49,13 +49,15 @@ const Header = () => {
                   </span>
                 </div>
               </button>
-              <button className="btn btn-sm md:btn-md border-none bg-transparent text-white !px-2 flex items-center gap-2">
+              <button className="btn btn-sm md:btn-md border-none bg-transparent text-white !px-2 flex items-center gap-2 order-3">
                 <span className="text-sm md:text-lg text-yellow-400">
                   <FaCoins />
                 </span>
-                <span className="text-sm md:text-base">1000</span>
+                <span className="text-sm md:text-lg font-bold">
+                  1000.00
+                </span>
               </button>
-              <div className="dropdown dropdown-end">
+              <div className="dropdown dropdown-end order-4">
                 <label tabIndex={0} className="cursor-pointer">
                   <div className="avatar">
                     <div className="ring-secondary-color ring-offset-base-100 w-[30px] md:w-[40px] rounded-full ring ring-offset-2">
