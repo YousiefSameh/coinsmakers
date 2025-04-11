@@ -43,8 +43,8 @@ const Header = () => {
                 aria-label="Notifications"
               >
                 <div className="indicator">
-                  <FaBell className="sm:text-base md:text-[28px]" />
-                  <span className="badge badge-secondary badge-xs indicator-item">
+                  <FaBell className="text-[24px]" />
+                  <span className="badge bg-secondary-color badge-xs indicator-item">
                     3
                   </span>
                 </div>

@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaCoins, FaGift, FaUserFriends, FaTrash, FaCheck, FaSearch, FaEllipsisV } from 'react-icons/fa';
+import { FaCoins, FaGift, FaUserFriends, FaTrash, FaCheck, FaSearch, FaEllipsisV, FaShoppingBag, FaExclamationCircle } from 'react-icons/fa';
 import { IoNotifications } from 'react-icons/io5';
+import { MdPending } from 'react-icons/md';
+import { BsCheckCircleFill } from 'react-icons/bs';
 import { useAppDispatch } from '@store/hooks';
 import { openSidebar as openDailyTasks } from "@store/dailyTasks/dailyTasksSlice";
 import { useNavigate } from 'react-router-dom';
 
-
 interface Notification {
   id: string;
-  type: 'reward' | 'friend' | 'system';
+  type: 'reward' | 'friend' | 'system' | 'offer_pending' | 'offer_completed' | 'offer_rejected';
   title: string;
   message: string;
   timestamp: Date;
@@ -18,6 +19,12 @@ interface Notification {
   action?: {
     label: string;
     onClick: () => void;
+  };
+  offerDetails?: {
+    platform: string;
+    reward: number;
+    status: 'pending' | 'completed' | 'rejected';
+    reason?: string;
   };
 }
 
@@ -31,6 +38,57 @@ const Notifications = () => {
 
   // Mock notifications - in real app, this would come from Redux store
   const [notifications, setNotifications] = useState<Notification[]>([
+    {
+      id: '4',
+      type: 'offer_completed',
+      title: 'Offer Completed Successfully!',
+      message: 'Your Alibaba.com offer has been verified',
+      timestamp: new Date(),
+      read: false,
+      details: 'Congratulations! Your participation in the Alibaba.com offer has been verified and approved. Your coins have been credited to your account.',
+      offerDetails: {
+        platform: 'Alibaba.com',
+        reward: 500,
+        status: 'completed'
+      },
+      action: {
+        label: 'View Earnings',
+        onClick: () => console.log('Viewing earnings...')
+      }
+    },
+    {
+      id: '5',
+      type: 'offer_pending',
+      title: 'Offer Under Review',
+      message: 'Your Alibaba.com registration is being verified',
+      timestamp: new Date(Date.now() - 1800000),
+      read: false,
+      details: 'We are currently verifying your participation in the Alibaba.com offer. This usually takes 24-48 hours.',
+      offerDetails: {
+        platform: 'Alibaba.com',
+        reward: 500,
+        status: 'pending'
+      }
+    },
+    {
+      id: '6',
+      type: 'offer_rejected',
+      title: 'Offer Not Approved',
+      message: 'Your Amazon offer was not verified',
+      timestamp: new Date(Date.now() - 5400000),
+      read: false,
+      details: 'Unfortunately, we could not verify your participation in the Amazon offer. Please ensure you follow all offer requirements and try again.',
+      offerDetails: {
+        platform: 'Amazon',
+        reward: 300,
+        status: 'rejected',
+        reason: 'Account creation could not be verified'
+      },
+      action: {
+        label: 'Try Again',
+        onClick: () => console.log('Retrying offer...')
+      }
+    },
     {
       id: '1',
       type: 'reward',
@@ -80,6 +138,35 @@ const Notifications = () => {
         return <FaUserFriends className="text-blue-500" />;
       case 'system':
         return <FaGift className="text-purple-500" />;
+      case 'offer_pending':
+        return <MdPending className="text-orange-500" />;
+      case 'offer_completed':
+        return <BsCheckCircleFill className="text-success" />;
+      case 'offer_rejected':
+        return <FaExclamationCircle className="text-error" />;
+    }
+  };
+
+  const getStatusBadge = (status: 'pending' | 'completed' | 'rejected') => {
+    switch (status) {
+      case 'pending':
+        return (
+          <span className="badge badge-warning gap-1">
+            <MdPending /> Pending
+          </span>
+        );
+      case 'completed':
+        return (
+          <span className="badge badge-success gap-1">
+            <BsCheckCircleFill /> Completed
+          </span>
+        );
+      case 'rejected':
+        return (
+          <span className="badge badge-error gap-1">
+            <FaExclamationCircle /> Rejected
+          </span>
+        );
     }
   };
 
@@ -206,6 +293,9 @@ const Notifications = () => {
           <option value="reward">Rewards</option>
           <option value="friend">Friends</option>
           <option value="system">System</option>
+          <option value="offer_pending">Offer Pending</option>
+          <option value="offer_completed">Offer Completed</option>
+          <option value="offer_rejected">Offer Rejected</option>
         </select>
       </div>
 
@@ -235,7 +325,12 @@ const Notifications = () => {
                 <div className="flex-1">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <h3 className="font-bold text-lg">{notification.title}</h3>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h3 className="font-bold text-lg">{notification.title}</h3>
+                        {notification.offerDetails && (
+                          getStatusBadge(notification.offerDetails.status)
+                        )}
+                      </div>
                       <p className="opacity-70">{notification.message}</p>
                     </div>
                     <div className="flex flex-col items-end gap-2">
@@ -264,20 +359,41 @@ const Notifications = () => {
                     </div>
                   </div>
                   <AnimatePresence>
-                    {(expandedNotification === notification.id || !notification.read) && notification.details && (
+                    {(expandedNotification === notification.id || !notification.read) && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        className="mt-3"
+                        className="mt-3 space-y-3"
                       >
-                        <p className="text-sm opacity-70 p-3 bg-base-300 rounded-lg">
-                          {notification.details}
-                        </p>
+                        {notification.details && (
+                          <p className="text-sm opacity-70 p-3 bg-base-300 rounded-lg">
+                            {notification.details}
+                          </p>
+                        )}
+                        {notification.offerDetails && (
+                          <div className="bg-base-300 p-3 rounded-lg">
+                            <div className="flex items-center gap-2 mb-2">
+                              <FaShoppingBag className="text-secondary-color" />
+                              <span className="font-semibold">{notification.offerDetails.platform}</span>
+                            </div>
+                            <div className="flex flex-wrap gap-3 text-sm">
+                              <div className="flex items-center gap-1">
+                                <FaCoins className="text-yellow-500" />
+                                <span>{notification.offerDetails.reward} coins</span>
+                              </div>
+                              {notification.offerDetails.reason && (
+                                <p className="w-full mt-2 text-error">
+                                  Reason: {notification.offerDetails.reason}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        )}
                         {notification.action && (
                           <button
                             onClick={notification.action.onClick}
-                            className="btn bg-secondary-color btn-sm mt-2"
+                            className="btn btn-secondary btn-sm"
                           >
                             {notification.action.label}
                           </button>
@@ -285,7 +401,9 @@ const Notifications = () => {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                  {notification.details && expandedNotification !== notification.id && notification.read && (
+                  {(notification.details || notification.offerDetails) && 
+                   expandedNotification !== notification.id && 
+                   notification.read && (
                     <button
                       onClick={() => toggleNotificationExpansion(notification.id)}
                       className="text-secondary-color text-sm mt-2 hover:underline"
