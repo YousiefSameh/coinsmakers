@@ -1,35 +1,34 @@
-import Logo from "@assets/Logo.png";
-import LogoSM from "@assets/LogoSM.png";
-import Avatar from "@assets/Avatar.png";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
-import { logout } from "@store/auth/AuthSlice";
+import Logo from "@assets/logo.png";
+import LogoSM from "@assets/logoSM.png";
+import Avatar from "@assets/Avatar.png";
+import ChatPopup from "../Chat/ChatPopup";
+import { toggleChat } from "@store/chat/chatSlice";
 import { FaBell, FaHistory, FaUser } from "react-icons/fa";
 import { FaCoins, FaRankingStar } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
 
 const Header = () => {
-	const dispatch = useAppDispatch();
-	const { user } = useAppSelector((state) => state.auth);
-	return (
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
+
+  return (
     <>
-      <header className="navbar fixed z-50 top-0 left-0 w-full bg-[#272B3A] px-4 py-2">
+      <header className="navbar fixed z-40 top-0 left-0 w-full bg-[#272B3A] px-4 py-2">
         <div className="navbar-start">
           <img
             src={Logo}
-            className="Logo w-[100px] md:w-[180px]"
-            alt="Coins Market Logo"
+            alt="Logo"
+            className="w-[120px] md:w-[150px] object-contain"
           />
         </div>
-        <nav
-          className="navbar-center hidden lg:flex"
-          aria-label="Main Navigation"
-        ></nav>
         <div className="navbar-end flex items-center gap-4 md:gap-6">
           {user ? (
             <>
               <button
+                onClick={() => dispatch(toggleChat())}
                 className="btn btn-accent text-white !px-2 hidden md:block"
                 aria-label="Open Chat"
               >
@@ -39,7 +38,7 @@ const Header = () => {
                 <span className="text-sm md:text-lg text-yellow-400">
                   <FaCoins />
                 </span>
-                <span className="text-sm md:text-lg">100.00</span>
+                <span className="text-sm md:text-base">1000</span>
               </button>
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="cursor-pointer">
@@ -51,13 +50,12 @@ const Header = () => {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                  className="dropdown-content menu p-2 shadow-lg bg-base-100 rounded-box w-52 mt-4"
                 >
                   <li>
                     <Link
                       to="/profile"
-                      aria-label="Profile"
-                      className="flex items-center gap-3"
+                      className="flex items-center gap-4 p-3 hover:bg-base-200 rounded-lg transition-colors"
                     >
                       <FaUser />
                       Profile
@@ -65,30 +63,24 @@ const Header = () => {
                   </li>
                   <li>
                     <Link
-                      to="/ranking"
-                      aria-label="Ranking"
-                      className="flex items-center gap-3"
-                    >
-                      <FaRankingStar />
-                      Ranking
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/rewards-history"
-                      aria-label="History"
-                      className="flex items-center gap-3"
+                      to="/history"
+                      className="flex items-center gap-4 p-3 hover:bg-base-200 rounded-lg transition-colors"
                     >
                       <FaHistory />
                       History
                     </Link>
                   </li>
                   <li>
-                    <button
-                      onClick={() => dispatch(logout())}
-                      className="flex items-center gap-3"
-                      aria-label="Logout"
+                    <Link
+                      to="/ranking"
+                      className="flex items-center gap-4 p-3 hover:bg-base-200 rounded-lg transition-colors"
                     >
+                      <FaRankingStar />
+                      Ranking
+                    </Link>
+                  </li>
+                  <li>
+                    <button className="flex items-center gap-4 p-3 hover:bg-base-200 rounded-lg transition-colors text-error">
                       <MdLogout />
                       Logout
                     </button>
@@ -105,25 +97,13 @@ const Header = () => {
               </button>
             </>
           ) : (
-            <>
-              <Link
-                to="/register"
-                className="btn btn-success md:w-[100px] text-white"
-                aria-label="Register"
-              >
-                Register
-              </Link>
-              <Link
-                to="/login"
-                className="btn btn-secondary md:w-[100px]"
-                aria-label="Login"
-              >
-                Login
-              </Link>
-            </>
+            <Link to="/auth" className="btn btn-primary">
+              Sign In
+            </Link>
           )}
         </div>
       </header>
+      <ChatPopup />
       <section
         className="titles mt-[75px] md:mt-[100px] z-10 flex items-center gap-4 px-4 pb-3 relative overflow-auto w-full"
         aria-label="User Titles"

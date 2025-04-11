@@ -13,6 +13,8 @@ import storage from "redux-persist/lib/storage";
 import cashout from './cashout/CashoutSlice';
 import auth from "./auth/AuthSlice";
 import coupon from "./coupon/CouponSlice";
+import dailytasks from "./dailyTasks/dailyTasksSlice";
+import chat from "./chat/chatSlice";
 
 const rootPersistConfig = {
   key: "root",
@@ -35,6 +37,8 @@ const couponPersistConfig = {
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, auth),
   cashout,
+  dailytasks,
+  chat,
   coupon: persistReducer(couponPersistConfig, coupon),
 });
 

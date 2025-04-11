@@ -9,13 +9,21 @@ import { ImCancelCircle } from "react-icons/im";
 import { Link } from "react-router-dom";
 import { MdLocalOffer } from "react-icons/md";
 import ReactCountryFlag from "react-country-flag";
-import { useCountry } from "../../hooks/useCountry";
+import { useCountry } from "@hooks/useCountry";
+import { useDispatch } from "react-redux";
+import { openSidebar as openDailyTasks } from "@store/dailyTasks/dailyTasksSlice";
+import DailyTasksSidebar from "../DailyTasks/DailyTasksSidebar";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
   const { country, loading } = useCountry();
   const [showMenu, setShowMenu] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [activeDock, setActiveDock] = useState("earn");
+
+  const handleRewardsClick = () => {
+    dispatch(openDailyTasks());
+  };
 
   return (
     <>
@@ -99,17 +107,6 @@ const Sidebar = () => {
             </li>
             <li
               className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
-              aria-label="Cashout"
-            >
-              <Link to="/cashout" className="flex items-center gap-5 w-full">
-                <div className="icon bg-base-300 p-2 rounded-md">
-                  <IoCashOutline className="text-2xl text-base-content" />
-                </div>
-                <p className="text-lg text-base-content">Cashout</p>
-              </Link>
-            </li>
-            <li
-              className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
               aria-label="Ranking"
             >
               <Link to="/ranking" className="flex items-center gap-5 w-full">
@@ -120,15 +117,15 @@ const Sidebar = () => {
               </Link>
             </li>
             <li
-              className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
+              className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer group"
               aria-label="Rewards"
             >
-              <Link to="/rewards" className="flex items-center gap-5 w-full">
+              <button onClick={handleRewardsClick} className="flex items-center gap-5 w-full">
                 <div className="icon bg-base-300 p-2 rounded-md">
                   <RiMedalLine className="text-2xl text-base-content" />
                 </div>
                 <p className="text-lg text-base-content">Rewards</p>
-              </Link>
+              </button>
             </li>
             <li
               className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
@@ -196,9 +193,11 @@ const Sidebar = () => {
           <span className="dock-label">Earn</span>
         </Link>
 
-        <Link
-          to="/rewards"
-          onClick={() => setActiveDock("rewards")}
+        <button
+          onClick={() => {
+            setActiveDock("rewards");
+            handleRewardsClick();
+          }}
           className={`text-base-content ${
             activeDock === "rewards" ? "bg-primary -translate-y-2" : ""
           }`}
@@ -206,7 +205,7 @@ const Sidebar = () => {
         >
           <RiMedalLine className="size-[1.2rem]" />
           <span className="dock-label">Rewards</span>
-        </Link>
+        </button>
 
         <button
           onClick={() => setActiveDock("chat")}
@@ -219,6 +218,9 @@ const Sidebar = () => {
           <span className="dock-label">Chat</span>
         </button>
       </div>
+
+      {/* Daily Tasks Sidebar */}
+      <DailyTasksSidebar />
     </>
   );
 };
