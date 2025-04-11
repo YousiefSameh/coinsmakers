@@ -6,7 +6,7 @@ import LogoSM from "@assets/logoSM.png";
 import Avatar from "@assets/Avatar.png";
 import ChatPopup from "../Chat/ChatPopup";
 import { toggleChat } from "@store/chat/chatSlice";
-import { FaBell, FaHistory, FaUser } from "react-icons/fa";
+import { FaBell, FaHistory, FaShare, FaUser } from "react-icons/fa";
 import { FaCoins, FaRankingStar } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
 
@@ -63,11 +63,20 @@ const Header = () => {
                   </li>
                   <li>
                     <Link
-                      to="/history"
+                      to="/rewards-history"
                       className="flex items-center gap-4 p-3 hover:bg-base-200 rounded-lg transition-colors"
                     >
                       <FaHistory />
                       History
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/referral"
+                      className="flex items-center gap-4 p-3 hover:bg-base-200 rounded-lg transition-colors"
+                    >
+                      <FaShare />
+                      Referral
                     </Link>
                   </li>
                   <li>
@@ -97,9 +106,22 @@ const Header = () => {
               </button>
             </>
           ) : (
-            <Link to="/auth" className="btn btn-primary">
-              Sign In
-            </Link>
+            <>
+              <Link
+                to="/register"
+                className="btn btn-success md:w-[100px] text-white"
+                aria-label="Register"
+              >
+                Register
+              </Link>
+              <Link
+                to="/login"
+                className="btn btn-secondary md:w-[100px]"
+                aria-label="Login"
+              >
+                Login
+              </Link>
+            </>
           )}
         </div>
       </header>

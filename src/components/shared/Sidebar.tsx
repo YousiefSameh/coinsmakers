@@ -107,6 +107,17 @@ const Sidebar = () => {
             </li>
             <li
               className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
+              aria-label="Cashout"
+            >
+              <Link to="/cashout" className="flex items-center gap-5 w-full">
+                <div className="icon bg-base-300 p-2 rounded-md">
+                  <IoCashOutline className="text-2xl text-base-content" />
+                </div>
+                <p className="text-lg text-base-content">Cashout</p>
+              </Link>
+            </li>
+            <li
+              className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
               aria-label="Ranking"
             >
               <Link to="/ranking" className="flex items-center gap-5 w-full">
@@ -120,7 +131,10 @@ const Sidebar = () => {
               className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer group"
               aria-label="Rewards"
             >
-              <button onClick={handleRewardsClick} className="flex items-center gap-5 w-full">
+              <button
+                onClick={handleRewardsClick}
+                className="flex items-center gap-5 w-full"
+              >
                 <div className="icon bg-base-300 p-2 rounded-md">
                   <RiMedalLine className="text-2xl text-base-content" />
                 </div>
@@ -173,7 +187,7 @@ const Sidebar = () => {
           to="/cashout"
           onClick={() => setActiveDock("cashout")}
           className={`text-base-content ${
-            activeDock === "cashout" ? "bg-primary -translate-y-2" : ""
+            activeDock === "cashout" ? "bg-secondary-color -translate-y-2" : ""
           }`}
           aria-label="Cashout"
         >
@@ -182,10 +196,10 @@ const Sidebar = () => {
         </Link>
 
         <Link
-          to="/earn"
+          to="/"
           onClick={() => setActiveDock("earn")}
           className={`text-base-content ${
-            activeDock === "earn" ? "bg-primary -translate-y-2" : ""
+            activeDock === "earn" ? "bg-secondary-color -translate-y-2" : ""
           }`}
           aria-label="Earn"
         >
@@ -199,7 +213,7 @@ const Sidebar = () => {
             handleRewardsClick();
           }}
           className={`text-base-content ${
-            activeDock === "rewards" ? "bg-primary -translate-y-2" : ""
+            activeDock === "rewards" ? "bg-secondary-color -translate-y-2" : ""
           }`}
           aria-label="Rewards"
         >
@@ -210,7 +224,7 @@ const Sidebar = () => {
         <button
           onClick={() => setActiveDock("chat")}
           className={`text-base-content ${
-            activeDock === "chat" ? "bg-primary -translate-y-2" : ""
+            activeDock === "chat" ? "bg-secondary-color -translate-y-2" : ""
           }`}
           aria-label="Chat"
         >
