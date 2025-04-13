@@ -49,7 +49,10 @@ const Sidebar = () => {
               className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
               aria-label="Home"
             >
-              <Link to="/" className="flex items-center gap-5 w-full">
+              <Link
+                to="/dashboard/earn"
+                className="flex items-center gap-5 w-full"
+              >
                 <div className="icon bg-base-300 p-2 rounded-md">
                   <FaHome className="text-2xl text-base-content" />
                 </div>
@@ -81,35 +84,35 @@ const Sidebar = () => {
                 role="menu"
               >
                 <li
-                  onClick={() => navigate("/orders/all")}
+                  onClick={() => navigate("/dashboard/orders/all")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
                   All Offers ({handleNumberOfOrderCategories("all")})
                 </li>
                 <li
-                  onClick={() => navigate("/orders/games")}
+                  onClick={() => navigate("/dashboard/orders/games")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
                   (Games {handleNumberOfOrderCategories("games")})
                 </li>
                 <li
-                  onClick={() => navigate("/orders/install")}
+                  onClick={() => navigate("/dashboard/orders/install")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
                   (Install {handleNumberOfOrderCategories("install")})
                 </li>
                 <li
-                  onClick={() => navigate("/orders/sweepstake")}
+                  onClick={() => navigate("/dashboard/orders/sweepstake")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
                   (Sweepstake {handleNumberOfOrderCategories("sweepstake")})
                 </li>
                 <li
-                  onClick={() => navigate("/orders/free")}
+                  onClick={() => navigate("/dashboard/orders/free")}
                   role="menuitem"
                   className="cursor-pointer hover:bg-base-300 px-5 py-2 rounded-md text-base-content"
                 >
@@ -121,7 +124,10 @@ const Sidebar = () => {
               className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
               aria-label="Cashout"
             >
-              <Link to="/cashout" className="flex items-center gap-5 w-full">
+              <Link
+                to="/dashboard/cashout"
+                className="flex items-center gap-5 w-full"
+              >
                 <div className="icon bg-base-300 p-2 rounded-md">
                   <IoCashOutline className="text-2xl text-base-content" />
                 </div>
@@ -132,7 +138,10 @@ const Sidebar = () => {
               className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
               aria-label="Ranking"
             >
-              <Link to="/ranking" className="flex items-center gap-5 w-full">
+              <Link
+                to="/dashboard/ranking"
+                className="flex items-center gap-5 w-full"
+              >
                 <div className="icon bg-base-300 p-2 rounded-md">
                   <PiRanking className="text-2xl text-base-content" />
                 </div>
@@ -157,7 +166,10 @@ const Sidebar = () => {
               className="flex items-center gap-5 transition-colors hover:bg-base-300 p-2 rounded-md cursor-pointer"
               aria-label="Coupon Codes"
             >
-              <Link to="/coupons" className="flex items-center gap-5 w-full">
+              <Link
+                to="/dashboard/coupons"
+                className="flex items-center gap-5 w-full"
+              >
                 <div className="icon bg-base-300 p-2 rounded-md">
                   <MdLocalOffer className="text-2xl text-base-content" />
                 </div>
@@ -196,7 +208,7 @@ const Sidebar = () => {
         </button>
 
         <Link
-          to="/cashout"
+          to="/dashboard/cashout"
           className={`text-base-content`}
           aria-label="Cashout"
         >
@@ -205,7 +217,7 @@ const Sidebar = () => {
         </Link>
 
         <Link
-          to="/"
+          to="/dashboard/earn"
           className={`text-base-content bg-secondary-color`}
           aria-label="Earn"
         >

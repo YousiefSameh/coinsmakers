@@ -42,34 +42,34 @@ const Ranking = () => {
     setActive(value);
   };
 
-  const topThree = leaderboardData.filter(item => item.rank <= 3);
-  const remaining = leaderboardData.filter(item => item.rank > 3);
+  const topThree = leaderboardData.filter((item) => item.rank <= 3);
+  const remaining = leaderboardData.filter((item) => item.rank > 3);
 
   // Animation variants
   const buttonVariants = {
     hover: { scale: 1.05 },
     tap: { scale: 0.95 },
-    active: { scale: 1.05, backgroundColor: "#3A3F52" }
+    active: { scale: 1.05, backgroundColor: "#3A3F52" },
   };
 
   const statsVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
   };
 
   const podiumVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   const tableVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
   const rowVariants = {
     hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
@@ -134,7 +134,7 @@ const Ranking = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Link
-              to="/history"
+              to="/dashboard/history"
               className="btn btn-outline text-secondary-color border-secondary-color hover:bg-secondary-color hover:text-white w-full sm:w-auto text-sm sm:text-base"
             >
               View History

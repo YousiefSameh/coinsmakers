@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
@@ -16,13 +17,23 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
       <header className="navbar fixed z-40 top-0 left-0 w-full bg-[#272B3A] px-4 py-2">
         <div className="navbar-start">
           <img
-            src={Logo}
+            src={isMobile ? LogoSM : Logo}
             alt="Logo"
             className="w-[120px] md:w-[150px] object-contain"
           />
@@ -53,9 +64,7 @@ const Header = () => {
                 <span className="text-sm md:text-lg text-yellow-400">
                   <FaCoins />
                 </span>
-                <span className="text-sm md:text-lg font-bold">
-                  1000.00
-                </span>
+                <span className="text-sm md:text-lg font-bold">1000.00</span>
               </button>
               <div className="dropdown dropdown-end order-4">
                 <label tabIndex={0} className="cursor-pointer">
@@ -72,7 +81,7 @@ const Header = () => {
                   <li>
                     <button
                       className="flex items-center gap-4 p-3 hover:bg-base-200 rounded-lg transition-colors"
-                      onClick={() => navigate("/profile")}
+                      onClick={() => navigate("/dashboard/profile")}
                     >
                       <FaUser />
                       Profile
@@ -80,7 +89,7 @@ const Header = () => {
                   </li>
                   <li>
                     <Link
-                      to="/rewards-history"
+                      to="/dashboard/rewards-history"
                       className="flex items-center gap-4 p-3 hover:bg-base-200 rounded-lg transition-colors"
                     >
                       <FaHistory />
@@ -89,7 +98,7 @@ const Header = () => {
                   </li>
                   <li>
                     <Link
-                      to="/referral"
+                      to="/dashboard/referral"
                       className="flex items-center gap-4 p-3 hover:bg-base-200 rounded-lg transition-colors"
                     >
                       <FaShare />
@@ -98,7 +107,7 @@ const Header = () => {
                   </li>
                   <li>
                     <Link
-                      to="/ranking"
+                      to="/dashboard/ranking"
                       className="flex items-center gap-4 p-3 hover:bg-base-200 rounded-lg transition-colors"
                     >
                       <FaRankingStar />
@@ -117,14 +126,14 @@ const Header = () => {
           ) : (
             <>
               <Link
-                to="/register"
+                to="/dashboard/register"
                 className="btn btn-success md:w-[100px] text-white"
                 aria-label="Register"
               >
                 Register
               </Link>
               <Link
-                to="/login"
+                to="/dashboard/login"
                 className="btn btn-secondary md:w-[100px]"
                 aria-label="Login"
               >

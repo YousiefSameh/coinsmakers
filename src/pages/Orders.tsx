@@ -37,7 +37,7 @@ const Orders = () => {
     if (categories.some((cat) => cat.id === category)) {
       dispatch(setCategory(category));
     } else {
-      navigate("/orders/all", { replace: true });
+      navigate("/dashboard/orders/all", { replace: true });
     }
   }, [category, dispatch, navigate]);
 

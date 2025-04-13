@@ -35,7 +35,7 @@ const Register = () => {
           user: { username: formData.username, email: formData.email },
         })
       );
-      navigate("/", { replace: true });
+      navigate("/dashboard/earn", { replace: true });
     }
   }, [dispatch, formData, navigate]);
 
@@ -119,7 +119,7 @@ const Register = () => {
         </button>
         <p className="mt-4 text-gray-400">
           Already have an account?{" "}
-          <Link to="/login" className="text-secondary-color">
+          <Link to="/dashboard/login" className="text-secondary-color">
             Login
           </Link>
         </p>

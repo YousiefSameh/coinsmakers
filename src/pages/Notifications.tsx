@@ -1,16 +1,32 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaCoins, FaGift, FaUserFriends, FaTrash, FaCheck, FaSearch, FaEllipsisV, FaShoppingBag, FaExclamationCircle } from 'react-icons/fa';
-import { IoNotifications } from 'react-icons/io5';
-import { MdPending } from 'react-icons/md';
-import { BsCheckCircleFill } from 'react-icons/bs';
-import { useAppDispatch } from '@store/hooks';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaCoins,
+  FaGift,
+  FaUserFriends,
+  FaTrash,
+  FaCheck,
+  FaSearch,
+  FaEllipsisV,
+  FaShoppingBag,
+  FaExclamationCircle,
+} from "react-icons/fa";
+import { IoNotifications } from "react-icons/io5";
+import { MdPending } from "react-icons/md";
+import { BsCheckCircleFill } from "react-icons/bs";
+import { useAppDispatch } from "@store/hooks";
 import { openSidebar as openDailyTasks } from "@store/dailyTasks/dailyTasksSlice";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 interface Notification {
   id: string;
-  type: 'reward' | 'friend' | 'system' | 'offer_pending' | 'offer_completed' | 'offer_rejected';
+  type:
+    | "reward"
+    | "friend"
+    | "system"
+    | "offer_pending"
+    | "offer_completed"
+    | "offer_rejected";
   title: string;
   message: string;
   timestamp: Date;
@@ -23,7 +39,7 @@ interface Notification {
   offerDetails?: {
     platform: string;
     reward: number;
-    status: 'pending' | 'completed' | 'rejected';
+    status: "pending" | "completed" | "rejected";
     reason?: string;
   };
 }
@@ -31,137 +47,147 @@ interface Notification {
 const Notifications = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [filter, setFilter] = useState<'all' | 'unread' | 'read'>('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedType, setSelectedType] = useState<Notification['type'] | 'all'>('all');
-  const [expandedNotification, setExpandedNotification] = useState<string | null>(null);
+  const [filter, setFilter] = useState<"all" | "unread" | "read">("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedType, setSelectedType] = useState<
+    Notification["type"] | "all"
+  >("all");
+  const [expandedNotification, setExpandedNotification] = useState<
+    string | null
+  >(null);
 
   // Mock notifications - in real app, this would come from Redux store
   const [notifications, setNotifications] = useState<Notification[]>([
     {
-      id: '4',
-      type: 'offer_completed',
-      title: 'Offer Completed Successfully!',
-      message: 'Your Alibaba.com offer has been verified',
+      id: "4",
+      type: "offer_completed",
+      title: "Offer Completed Successfully!",
+      message: "Your Alibaba.com offer has been verified",
       timestamp: new Date(),
       read: false,
-      details: 'Congratulations! Your participation in the Alibaba.com offer has been verified and approved. Your coins have been credited to your account.',
+      details:
+        "Congratulations! Your participation in the Alibaba.com offer has been verified and approved. Your coins have been credited to your account.",
       offerDetails: {
-        platform: 'Alibaba.com',
+        platform: "Alibaba.com",
         reward: 500,
-        status: 'completed'
+        status: "completed",
       },
       action: {
-        label: 'View Earnings',
-        onClick: () => console.log('Viewing earnings...')
-      }
+        label: "View Earnings",
+        onClick: () => console.log("Viewing earnings..."),
+      },
     },
     {
-      id: '5',
-      type: 'offer_pending',
-      title: 'Offer Under Review',
-      message: 'Your Alibaba.com registration is being verified',
+      id: "5",
+      type: "offer_pending",
+      title: "Offer Under Review",
+      message: "Your Alibaba.com registration is being verified",
       timestamp: new Date(Date.now() - 1800000),
       read: false,
-      details: 'We are currently verifying your participation in the Alibaba.com offer. This usually takes 24-48 hours.',
+      details:
+        "We are currently verifying your participation in the Alibaba.com offer. This usually takes 24-48 hours.",
       offerDetails: {
-        platform: 'Alibaba.com',
+        platform: "Alibaba.com",
         reward: 500,
-        status: 'pending'
-      }
+        status: "pending",
+      },
     },
     {
-      id: '6',
-      type: 'offer_rejected',
-      title: 'Offer Not Approved',
-      message: 'Your Amazon offer was not verified',
+      id: "6",
+      type: "offer_rejected",
+      title: "Offer Not Approved",
+      message: "Your Amazon offer was not verified",
       timestamp: new Date(Date.now() - 5400000),
       read: false,
-      details: 'Unfortunately, we could not verify your participation in the Amazon offer. Please ensure you follow all offer requirements and try again.',
+      details:
+        "Unfortunately, we could not verify your participation in the Amazon offer. Please ensure you follow all offer requirements and try again.",
       offerDetails: {
-        platform: 'Amazon',
+        platform: "Amazon",
         reward: 300,
-        status: 'rejected',
-        reason: 'Account creation could not be verified'
+        status: "rejected",
+        reason: "Account creation could not be verified",
       },
       action: {
-        label: 'Try Again',
-        onClick: () => console.log('Retrying offer...')
-      }
+        label: "Try Again",
+        onClick: () => console.log("Retrying offer..."),
+      },
     },
     {
-      id: '1',
-      type: 'reward',
-      title: 'Daily Reward!',
-      message: 'You earned 100 coins from daily tasks',
+      id: "1",
+      type: "reward",
+      title: "Daily Reward!",
+      message: "You earned 100 coins from daily tasks",
       timestamp: new Date(),
       read: false,
-      details: 'Complete your daily tasks to earn more coins. Keep up the great work!',
+      details:
+        "Complete your daily tasks to earn more coins. Keep up the great work!",
       action: {
-        label: 'See Reward',
-        onClick: () => dispatch(openDailyTasks())
-      }
+        label: "See Reward",
+        onClick: () => dispatch(openDailyTasks()),
+      },
     },
     {
-      id: '2',
-      type: 'friend',
-      title: 'New Friend Request',
-      message: 'John Doe wants to be your friend',
+      id: "2",
+      type: "friend",
+      title: "New Friend Request",
+      message: "John Doe wants to be your friend",
       timestamp: new Date(Date.now() - 3600000),
       read: true,
-      details: 'Adding friends helps you earn more coins through referrals and joint activities.',
+      details:
+        "Adding friends helps you earn more coins through referrals and joint activities.",
       action: {
-        label: 'Accept Request',
-        onClick: () => console.log('Accepting friend request...')
-      }
+        label: "Accept Request",
+        onClick: () => console.log("Accepting friend request..."),
+      },
     },
     {
-      id: '3',
-      type: 'system',
-      title: 'New Offers Available',
-      message: 'Check out new high-paying offers',
+      id: "3",
+      type: "system",
+      title: "New Offers Available",
+      message: "Check out new high-paying offers",
       timestamp: new Date(Date.now() - 7200000),
       read: false,
-      details: 'We have added new high-paying offers from trusted partners. Complete them to earn big rewards!',
+      details:
+        "We have added new high-paying offers from trusted partners. Complete them to earn big rewards!",
       action: {
-        label: 'View Offers',
-        onClick: () => navigate("/")
-      }
+        label: "View Offers",
+        onClick: () => navigate("/dashboard/earn"),
+      },
     },
   ]);
 
-  const getIcon = (type: Notification['type']) => {
+  const getIcon = (type: Notification["type"]) => {
     switch (type) {
-      case 'reward':
+      case "reward":
         return <FaCoins className="text-yellow-500" />;
-      case 'friend':
+      case "friend":
         return <FaUserFriends className="text-blue-500" />;
-      case 'system':
+      case "system":
         return <FaGift className="text-purple-500" />;
-      case 'offer_pending':
+      case "offer_pending":
         return <MdPending className="text-orange-500" />;
-      case 'offer_completed':
+      case "offer_completed":
         return <BsCheckCircleFill className="text-success" />;
-      case 'offer_rejected':
+      case "offer_rejected":
         return <FaExclamationCircle className="text-error" />;
     }
   };
 
-  const getStatusBadge = (status: 'pending' | 'completed' | 'rejected') => {
+  const getStatusBadge = (status: "pending" | "completed" | "rejected") => {
     switch (status) {
-      case 'pending':
+      case "pending":
         return (
           <span className="badge badge-warning gap-1">
             <MdPending /> Pending
           </span>
         );
-      case 'completed':
+      case "completed":
         return (
           <span className="badge badge-success gap-1">
             <BsCheckCircleFill /> Completed
           </span>
         );
-      case 'rejected':
+      case "rejected":
         return (
           <span className="badge badge-error gap-1">
             <FaExclamationCircle /> Rejected
@@ -172,15 +198,15 @@ const Notifications = () => {
 
   const formatTime = (date: Date) => {
     const hours = Math.floor((Date.now() - date.getTime()) / 3600000);
-    if (hours < 1) return 'Just now';
-    if (hours === 1) return '1 hour ago';
+    if (hours < 1) return "Just now";
+    if (hours === 1) return "1 hour ago";
     if (hours < 24) return `${hours} hours ago`;
     return `${Math.floor(hours / 24)} days ago`;
   };
 
   const markAllAsRead = () => {
-    setNotifications(prev =>
-      prev.map(notification => ({ ...notification, read: true }))
+    setNotifications((prev) =>
+      prev.map((notification) => ({ ...notification, read: true }))
     );
   };
 
@@ -193,32 +219,33 @@ const Notifications = () => {
   };
 
   const markAsRead = (id: string) => {
-    setNotifications(prev =>
-      prev.map(notification =>
+    setNotifications((prev) =>
+      prev.map((notification) =>
         notification.id === id ? { ...notification, read: true } : notification
       )
     );
   };
 
   const deleteNotification = (id: string) => {
-    setNotifications(prev =>
-      prev.filter(notification => notification.id !== id)
+    setNotifications((prev) =>
+      prev.filter((notification) => notification.id !== id)
     );
   };
 
   const filteredNotifications = notifications
-    .filter(notification => {
-      if (filter === 'unread') return !notification.read;
-      if (filter === 'read') return notification.read;
+    .filter((notification) => {
+      if (filter === "unread") return !notification.read;
+      if (filter === "read") return notification.read;
       return true;
     })
-    .filter(notification => {
-      if (selectedType !== 'all') return notification.type === selectedType;
+    .filter((notification) => {
+      if (selectedType !== "all") return notification.type === selectedType;
       return true;
     })
-    .filter(notification =>
-      notification.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      notification.message.toLowerCase().includes(searchQuery.toLowerCase())
+    .filter(
+      (notification) =>
+        notification.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        notification.message.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
   const container = {
@@ -226,14 +253,14 @@ const Notifications = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const item = {
     hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1 }
+    show: { y: 0, opacity: 1 },
   };
 
   return (
@@ -244,7 +271,7 @@ const Notifications = () => {
           <IoNotifications className="text-3xl text-secondary-color" />
           <h1 className="text-2xl font-bold">Notifications</h1>
           <span className="badge bg-secondary-color">
-            {notifications.filter(n => !n.read).length} New
+            {notifications.filter((n) => !n.read).length} New
           </span>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -277,7 +304,9 @@ const Notifications = () => {
         </div>
         <select
           value={filter}
-          onChange={(e) => setFilter(e.target.value as 'all' | 'unread' | 'read')}
+          onChange={(e) =>
+            setFilter(e.target.value as "all" | "unread" | "read")
+          }
           className="select select-bordered w-full"
         >
           <option value="all">All Notifications</option>
@@ -286,7 +315,9 @@ const Notifications = () => {
         </select>
         <select
           value={selectedType}
-          onChange={(e) => setSelectedType(e.target.value as Notification['type'] | 'all')}
+          onChange={(e) =>
+            setSelectedType(e.target.value as Notification["type"] | "all")
+          }
           className="select select-bordered w-full"
         >
           <option value="all">All Types</option>
@@ -317,7 +348,7 @@ const Notifications = () => {
               key={notification.id}
               variants={item}
               className={`bg-base-200 rounded-lg p-4 ${
-                !notification.read ? 'ring-2 ring-secondary-color/30' : ''
+                !notification.read ? "ring-2 ring-secondary-color/30" : ""
               }`}
             >
               <div className="flex gap-4">
@@ -326,10 +357,11 @@ const Notifications = () => {
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="font-bold text-lg">{notification.title}</h3>
-                        {notification.offerDetails && (
-                          getStatusBadge(notification.offerDetails.status)
-                        )}
+                        <h3 className="font-bold text-lg">
+                          {notification.title}
+                        </h3>
+                        {notification.offerDetails &&
+                          getStatusBadge(notification.offerDetails.status)}
                       </div>
                       <p className="opacity-70">{notification.message}</p>
                     </div>
@@ -338,19 +370,32 @@ const Notifications = () => {
                         {formatTime(notification.timestamp)}
                       </span>
                       <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-xs btn-circle">
+                        <label
+                          tabIndex={0}
+                          className="btn btn-ghost btn-xs btn-circle"
+                        >
                           <FaEllipsisV />
                         </label>
-                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul
+                          tabIndex={0}
+                          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                        >
                           {!notification.read && (
                             <li>
-                              <button onClick={() => markAsRead(notification.id)}>
+                              <button
+                                onClick={() => markAsRead(notification.id)}
+                              >
                                 <FaCheck /> Mark as read
                               </button>
                             </li>
                           )}
                           <li>
-                            <button onClick={() => deleteNotification(notification.id)} className="text-error">
+                            <button
+                              onClick={() =>
+                                deleteNotification(notification.id)
+                              }
+                              className="text-error"
+                            >
                               <FaTrash /> Delete
                             </button>
                           </li>
@@ -359,10 +404,11 @@ const Notifications = () => {
                     </div>
                   </div>
                   <AnimatePresence>
-                    {(expandedNotification === notification.id || !notification.read) && (
+                    {(expandedNotification === notification.id ||
+                      !notification.read) && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
+                        animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         className="mt-3 space-y-3"
                       >
@@ -375,12 +421,16 @@ const Notifications = () => {
                           <div className="bg-base-300 p-3 rounded-lg">
                             <div className="flex items-center gap-2 mb-2">
                               <FaShoppingBag className="text-secondary-color" />
-                              <span className="font-semibold">{notification.offerDetails.platform}</span>
+                              <span className="font-semibold">
+                                {notification.offerDetails.platform}
+                              </span>
                             </div>
                             <div className="flex flex-wrap gap-3 text-sm">
                               <div className="flex items-center gap-1">
                                 <FaCoins className="text-yellow-500" />
-                                <span>{notification.offerDetails.reward} coins</span>
+                                <span>
+                                  {notification.offerDetails.reward} coins
+                                </span>
                               </div>
                               {notification.offerDetails.reason && (
                                 <p className="w-full mt-2 text-error">
@@ -401,16 +451,18 @@ const Notifications = () => {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                  {(notification.details || notification.offerDetails) && 
-                   expandedNotification !== notification.id && 
-                   notification.read && (
-                    <button
-                      onClick={() => toggleNotificationExpansion(notification.id)}
-                      className="text-secondary-color text-sm mt-2 hover:underline"
-                    >
-                      Show more
-                    </button>
-                  )}
+                  {(notification.details || notification.offerDetails) &&
+                    expandedNotification !== notification.id &&
+                    notification.read && (
+                      <button
+                        onClick={() =>
+                          toggleNotificationExpansion(notification.id)
+                        }
+                        className="text-secondary-color text-sm mt-2 hover:underline"
+                      >
+                        Show more
+                      </button>
+                    )}
                 </div>
               </div>
             </motion.div>

@@ -37,7 +37,7 @@ const Login = () => {
         })
       );
       toast.success("Login successful");
-      navigate("/", { replace: true });
+      navigate("/dashboard/earn", { replace: true });
     }
   }, [dispatch, formData, navigate]);
 
@@ -90,7 +90,7 @@ const Login = () => {
         </button>
         <p className="mt-4 text-gray-400">
           Do not have an account?{" "}
-          <Link to="/register" className="text-secondary-color">
+          <Link to="/dashboard/register" className="text-secondary-color">
             Register
           </Link>
         </p>

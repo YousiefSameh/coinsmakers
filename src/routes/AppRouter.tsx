@@ -9,7 +9,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const MainTemplate = lazy(() => import("@templates/MainTemplate"));
 
 // Pages
-// const Home = lazy(() => import("@pages/Home"));
+const Home = lazy(() => import("@pages/Home"));
 const Earn = lazy(() => import("@pages/Earn"));
 const Cashout = lazy(() => import("@pages/Cashout"));
 const Checkout = lazy(() => import("@pages/Checkout"));
@@ -31,6 +31,10 @@ const Notifications = lazy(() => import("@pages/Notifications"));
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <PageSuspenseFallback><Home /></PageSuspenseFallback>
+  },
+  {
+    path: "/dashboard",
     element: (
       <Suspense fallback={<Loading />}>
         <MainTemplate />
@@ -38,7 +42,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        index: true,
+        path: "earn",
         element: (
           <PageSuspenseFallback>
             <ProtectedRoute>
